@@ -1,8 +1,9 @@
 const express = require('express')
 const app = express()
-// const pgp = require('pg-promise')()
+const pgp = require('pg-promise')()
 const port = 5444
 const path = require('path')
+const userRoutes = require('./routes/users')(app)
 const bodyParser = require('body-parser')
 
 const es6Renderer = require('express-es6-template-engine')
@@ -19,6 +20,7 @@ app.set('view engine', 'html')
 //     saveUninitialized: false
 //   }))
 
+app.use('/users',userRoutes)
 app.use(bodyParser.urlencoded({extended:false}))
 
 app.get('/',(req,res) => res.send('working'))
