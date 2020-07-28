@@ -38,7 +38,10 @@ app.use('/login',userRoutes)
 app.use('/feed',authenticate,feedRoutes)
 app.use('/profile',authenticate,profileRoutes)
 app.use(bodyParser.urlencoded({extended:false}))
+app.get('/css/main.css', (req, res)=>res.sendFile(path.join(__dirname, '/css/main.css')))
 
 app.get('/',(req,res) => res.send('working'))
 
-app.listen(port)
+app.listen(port, ()=>{
+    console.log(`Listening on port http://localhost:${port}`)
+})
