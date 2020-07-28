@@ -2,7 +2,7 @@
   "name": "actapp",
   "version": "1.0.0",
   "description": "express social media app",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "db:install": "createdb actappdb",
