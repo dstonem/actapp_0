@@ -3,6 +3,7 @@ const app = express()
 const pgp = require('pg-promise')()
 const port = 4321
 const path = require('path')
+const connect = require('./config')
 const userRoutes = require('./routes/login')
 const feedRoutes = require('./routes/feed')
 const profileRoutes = require('./routes/profile')
@@ -17,7 +18,7 @@ app.set('view engine', 'html')
 const session = require('express-session')
 
 app.use(session({
-    secret: 'lajkhsdlfuono97qoh78hO*&N**7no78rexn3onr87gO*&NOCIAHSLUIN(NH#(*NH',
+    secret: connect.secret,
     resave: false,
     saveUninitialized: false
   }))
