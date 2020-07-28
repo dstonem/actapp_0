@@ -4,9 +4,10 @@ const bodyParser = require('body-parser')
 const pgp = require('pg-promise')()
 const connect = require('../config')
 const db = pgp(connect)
-const User = require('../models/users-db-logic')
+const User = require('../models/users-db-logic')(db)
 //how can we have all of the pgp/database/config things in the app.js file? ask Clint...
 
+// router.get('./css/main.css')
 
 router.use(bodyParser.urlencoded({extended:true}))
 
@@ -46,8 +47,8 @@ router.post('/register',(req,res,next) => {
     console.log(req.session.username)
     console.log(req.session.password)
 
-    db.none(`INSERT INTO users (username,password,firstName,lastName,email)
-    VALUES ('${req.session.username}','${req.session.password}','test','test','test')`)
+    db.one('INSERT INTO users (username,password,firstName,lastName,email) VALUES($1,$2,$3,$4,$5) RETURNING *',[`${req.session.username}`,`${req.session.password}`,'test','test','test'])
+        .then(id=>console.log(id))
     // User.insert(req.session.username,req.session.password)
     res.redirect('/')
     // res.send('INSERT INTO...')
