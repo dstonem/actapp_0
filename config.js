@@ -4,5 +4,6 @@ module.exports = {
     host:'localhost',
     port:5432,
     user:'dylan',
-    database:'actappdb'
+    database:'actappdb',
+    secret:'lajkhsdlfuono97qoh78hO*&N**7no78rexn3onr87gO*&NOCIAHSLUIN(NH#(*NH'
 }
