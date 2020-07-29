@@ -29,6 +29,7 @@
     "express-es6-template-engine": "^2.2.3",
     "express-session": "^1.17.1",
     "express-static": "^1.2.6",
+    "formidable": "^1.2.2",
     "pg-promise": "^10.5.8"
   },
   "devDependencies": {

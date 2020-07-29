@@ -51,11 +51,19 @@ router.post('/register', async (req,res,next) => {
     let isValid = await User.register(req.session.username, req.session.password, req.session.firstName, req.session.lastName, req.session.email)
     
     if(isValid){
-        res.redirect('/feed')
+        res.redirect('/survey')
     } else {
         res.render('register',{locals: {message: 'Username already exists'}})
     }
     
+})
+
+router.get('/survey',(req, res, next) =>{
+    res.render('survey')
+})
+
+router.post('/survey',(req, res, next) =>{
+    res.redirect('/feed')
 })
 
 router.get('/updateUser', (req, res, next) =>{
