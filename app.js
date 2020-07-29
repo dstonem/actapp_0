@@ -1,9 +1,9 @@
 const express = require('express')
 const app = express()
-const pgp = require('pg-promise')()
+const {secret} = require('./config')
 const port = 4321
 const path = require('path')
-const connect = require('./config')
+
 const userRoutes = require('./routes/login')
 const feedRoutes = require('./routes/feed')
 const profileRoutes = require('./routes/profile')
@@ -18,10 +18,10 @@ app.set('view engine', 'html')
 const session = require('express-session')
 
 app.use(session({
-    secret: connect.secret,
+    secret: secret,
     resave: false,
     saveUninitialized: false
-  }))
+}))
 
 let authenticate = (req,res,next) => {
     
