@@ -39,6 +39,9 @@ router.post('/register', async (req,res,next) => {
     let firstName = req.body.firstName
     let lastName = req.body.lastName
     let email = req.body.email
+    let address = req.body.address
+    let city = req.body.city
+    let state = req.body.state
 
     if(req.session) {
         req.session.username = username
@@ -46,16 +49,27 @@ router.post('/register', async (req,res,next) => {
         req.session.firstName = firstName
         req.session.lastName = lastName
         req.session.email = email
+        req.session.address = address
+        req.session.city = city
+        req.session.state = state
     }
     
-    let isValid = await User.register(req.session.username, req.session.password, req.session.firstName, req.session.lastName, req.session.email)
+    let isValid = await User.register(req.session.username, req.session.password, req.session.firstName, req.session.lastName, req.session.email, req.session.address, req.session.city, req.session.state)
     
     if(isValid){
-        res.redirect('/feed')
+        res.redirect('/survey')
     } else {
         res.render('register',{locals: {message: 'Username already exists'}})
     }
     
+})
+
+router.get('/survey',(req, res, next) =>{
+    res.render('survey')
+})
+
+router.post('/survey',(req, res, next) =>{
+    res.redirect('/feed')
 })
 
 router.get('/updateUser', (req, res, next) =>{

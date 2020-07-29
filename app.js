@@ -7,6 +7,7 @@ const path = require('path')
 const userRoutes = require('./routes/login')
 const feedRoutes = require('./routes/feed')
 const profileRoutes = require('./routes/profile')
+const uploadRoutes = require('./routes/upload')
 const bodyParser = require('body-parser')
 
 const es6Renderer = require('express-es6-template-engine')
@@ -34,11 +35,14 @@ let authenticate = (req,res,next) => {
     
 }
 
+app.use(express.static("public"))
 app.use('/login',userRoutes)
 app.use('/feed',authenticate,feedRoutes)
 app.use('/profile',authenticate,profileRoutes)
+app.use('/upload',authenticate,uploadRoutes)
 app.use(bodyParser.urlencoded({extended:false}))
-app.get('/css/main.css', (req, res)=>res.sendFile(path.join(__dirname, '/css/main.css')))
+
+
 
 app.get('/',(req,res) => res.send('working'))
 
