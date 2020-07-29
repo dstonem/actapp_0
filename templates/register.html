@@ -8,8 +8,14 @@
     <form action="/login/register" method="post">
         <fieldset>
             <legend>Register</legend>
+            <p>${message}</p>
             <input name="username" placeholder="Enter Username"/>
-            <input name="password" placeholder="Enter Password"/>
+            <input name="password" type="password" placeholder="Enter Password"/>
+            <input name="confirm-password" type="password" placeholder="Confirm Password"/>
+            <input name="firstName" placeholder="First Name"/>
+            <input name="lastName" placeholder="Last Name"/>
+            <input name="email" type="email" placeholder="Confirm Password"/>
+            <input name="home-address" placeholder="Home Address (so we can send you election resources)"/>
             <button>Sign Up</button>
         </fieldset>
     </form>
