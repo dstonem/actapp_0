@@ -14,7 +14,6 @@ create table posts (
     id SERIAL PRIMARY KEY,
     title VARCHAR(30) not null,
     body VARCHAR not null,
-    picture IMAGE,
     url text not null,
     user_id integer references users (id)
 );
@@ -42,20 +41,20 @@ create table tags_posts (
     post_id VARCHAR
 );
 
-insert into users (username,password,firstName,lastName,email)
+insert into users (username,password,firstName,lastName,email,address,city,state)
 values 
     ('dstonem','123456','dylan','stone-miller','dstonemiller@gmail.com', '1234 Marsh Trail Circle', 'Sandy Springs', 'Georgia'),
     ('npatton','123456','nathan','patton','npatton@gmail.com', '1234 Ashford Road', 'Atlanta', 'Georgia')
 ;
 
-insert into posts (url,user_id) 
+insert into posts (title,body,url,user_id) 
 values
-    ('dylan_photo_1',1),
-    ('dylan_photo_2',1),
-    ('dylan_photo_3',1),
-    ('nathan_photo_1',2),
-    ('nathan_photo_2',2),
-    ('nathan_photo_3',2)
+    ('title','body','dylan_photo_1',1),
+    ('title','body','dylan_photo_2',1),
+    ('title','body','dylan_photo_3',1),
+    ('title','body','nathan_photo_1',2),
+    ('title','body','nathan_photo_2',2),
+    ('title','body','nathan_photo_3',2)
 ;
 
 -- start with the ONE and end with the MANY
