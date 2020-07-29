@@ -75,7 +75,11 @@ router.post('/survey',(req, res, next) =>{
 })
 
 router.get('/updateUser', (req, res, next) =>{
-    res.render('updateUser')
+    res.render('updateUser',{
+        locals:{
+            user:req.session
+        }
+    })
 })
 
 router.post('/updateUser', (req, res, next) =>{
