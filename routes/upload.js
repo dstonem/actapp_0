@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const bodyParser = require('body-parser')
 const formidable = require('formidable');
+const path = require('path')
 
 router.use(bodyParser.urlencoded({ extended:true }))
 
@@ -20,13 +21,16 @@ router.post("/", (req,res)=>{
       })
     .on('fileBegin', (name, file) => {
         //sets the path to save the image
-
+        
         //NEXT STEP: try to get this file path working
-        file.path = '/Users/dylan/dc_projects/actapp/public/images/' + new Date().getTime() + file.name
+        file.path = __dirname.replace('routes','') + 'public/images/' + new Date().getTime() + file.name
     })
     .on('file', (name, file) => {
         //console.log('Uploaded file', name, file);
-        form.profile_image = file.path.replace(__dirname+'/public',"");
+        console.log(path.join(__dirname).replace('routes',''))
+        console.log(file.path)
+        //can use what the form.profile_image returns as an images src when using it elsewhere
+        form.profile_image = file.path.replace(__dirname.replace('routes','')+'public',"");
     })
     .on('end', ()=>{
         console.log(form);
