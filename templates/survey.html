@@ -4,14 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Survey</title>
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    <style>
+        .h1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color:white;
+        }
+        .buttoncontain {
+            padding-left: 220px;
+        }
+    </style>
 </head>
 <body>
-    <div class="topdawg">
-    <fieldset>
-        <legend>Whatever you wanna put here</legend>
-            <div class="mostcontainter">
-                <label for="causes">Pick a Cause that Most Matters to You:</label>
+    <body>
+        <section class="hero has-background-black">
+            <div class="hero-body">
+                <div class="container">
+                        <h1 class="h1 title is-1">ACT App</h1>
+                </div>
+            </div>
+    </section>
+    <section class="section has-background-light">
+        <div class="mostcontainter">
+            <div class="columns">
+                <div class="column">
+                    <div class="notification">
+                    <label for="causes" class="title is-size-4">Pick a Cause that Most Matters to You:</label>
+                        <select id="dropdown">
+                            <option value="" disabled selected>Select your option</option>
+                            <option value="blm">Black Lives Matter</option>
+                            <option value="election">Upcoming Election</option>
+                            <option value="climate">Climate Change</option>
+                            <option value="youth">Youth Development Services</option>
+                        </select>
+            </div>
+            </div>
+            <div class="column">
+                <div class="notification">
+                <label for="causes" class="title is-size-4">Pick a Cause that Moderately Matters to You:</label>
                     <select id="dropdown">
                         <option value="" disabled selected>Select your option</option>
                         <option value="blm">Black Lives Matter</option>
@@ -20,10 +53,13 @@
                         <option value="youth">Youth Development Services</option>
                     </select>
             </div>
-    </fieldset>
-    <fieldset>
-            <div class = "moderatecontainer">
-                <label for="causes">Pick a Cause that Moderately Matters to You:</label>
+            <div class="buttoncontain">
+            <input type="submit" value="submit" class="button is-success is-normal">
+            </div>
+            </div>
+            <div class="column">
+                <div class="notification">
+                <label for="causes" class="title is-size-4">Pick a Cause that Least Matters to You:</label>
                     <select id="dropdown">
                         <option value="" disabled selected>Select your option</option>
                         <option value="blm">Black Lives Matter</option>
@@ -31,20 +67,9 @@
                         <option value="climate">Climate Change</option>
                         <option value="youth">Youth Development Services</option>
                     </select>
+                </div>
             </div>
-    </fieldset>
-    <fieldset>
-            <div class="leastcontainer">
-                <label for="causes">Pick a Cause that Least Matters to You:</label>
-                    <select id="dropdown">
-                        <option value="" disabled selected>Select your option</option>
-                        <option value="blm">Black Lives Matter</option>
-                        <option value="election">Upcoming Election</option>
-                        <option value="climate">Climate Change</option>
-                        <option value="youth">Youth Development Services</option>
-                    </select>
-            </div>
-    </fieldset>
-    </div>           
+        </div>
+    </section>       
 </body> 
 </html>
