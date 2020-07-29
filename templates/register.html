@@ -1,19 +1,40 @@
 <html>
 <head>
-    <link rel="stylesheet" href="/css/main.css">
+    <!-- <link rel="stylesheet" href="/css/main.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    <style>
+        .h1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color:white;
+        }
+    </style>
 </head>
 <body>
-    <h1></h1>
-
-    <form action="/login/register" method="post">
-        <fieldset>
-            <legend>Register</legend>
-            <input name="username" placeholder="Enter Username"/>
-            <input name="password" placeholder="Enter Password"/>
-            <button>Sign Up</button>
-        </fieldset>
-    </form>
-    <a href="/login">Already Have an Account? Login Here!</a>
+    <section class="hero has-background-black">
+        <div class="hero-body">
+            <div class="container">
+                    <h1 class="h1 title is-1">ACT App</h1>
+            </div>
+        </div>
+    </section>
+    <section class="section has-background-light">
+        <div class="column">
+        <div class="notification">
+            <form action="/login/register" method="post">
+                <fieldset>
+                <legend>Register</legend>
+                    <input name="username" placeholder="Enter Username"/>
+                    <input name="password" placeholder="Enter Password"/>
+                <button type="submit" value="submit" class="button is-success is-normal">Sign Up</button>
+                </fieldset>
+            </form>
+            <a href="/login">Already Have an Account? Login Here!</a>
+        </div>
+    </div>
+</section>
 
 </body>
 </html>
