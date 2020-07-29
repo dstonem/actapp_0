@@ -4,11 +4,17 @@ create table users (
     password VARCHAR(100) not null,
     firstName text not null,
     lastName text not null,
-    email VARCHAR not null
+    email VARCHAR not null,
+    address VARCHAR not null,
+    city VARCHAR not null,
+    state VARCHAR not null
 );
 
 create table posts (
     id SERIAL PRIMARY KEY,
+    title VARCHAR(30) not null,
+    body VARCHAR not null,
+    picture IMAGE,
     url text not null,
     user_id integer references users (id)
 );
@@ -38,8 +44,8 @@ create table tags_posts (
 
 insert into users (username,password,firstName,lastName,email)
 values 
-    ('dstonem','123456','dylan','stone-miller','dstonemiller@gmail.com'),
-    ('npatton','123456','nathan','patton','npatton@gmail.com')
+    ('dstonem','123456','dylan','stone-miller','dstonemiller@gmail.com', '1234 Marsh Trail Circle', 'Sandy Springs', 'Georgia'),
+    ('npatton','123456','nathan','patton','npatton@gmail.com', '1234 Ashford Road', 'Atlanta', 'Georgia')
 ;
 
 insert into posts (url,user_id) 
