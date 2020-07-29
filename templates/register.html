@@ -21,25 +21,30 @@
         </div>
     </section>
     <section class="section has-background-light">
-        <div class="column">
-        <div class="notification">
-            <form action="/login/register" method="post">
-                <fieldset>
-                  <legend>Register</legend>
-                  <p>${message}</p>
-                  <input name="username" placeholder="Enter Username"/>
-                  <input name="password" type="password" placeholder="Enter Password"/>
-                  <input name="confirm-password" type="password" placeholder="Confirm Password"/>
-                  <input name="firstName" placeholder="First Name"/>
-                  <input name="lastName" placeholder="Last Name"/>
-                  <input name="email" type="email" placeholder="Confirm Password"/>
-                  <input name="home-address" placeholder="Home Address (so we can send you election resources)"/>
-                  <button>Sign Up</button>
-              </fieldset>
+        <div class="columns">
+            <div class="column"></div>
+                <div class="column">
+                    <form action="/login/register" method="post">
+                    <fieldset>
+                        <legend>Register</legend>
+                        <p>${message}</p>
+                        <input name="username" placeholder="Enter Username"/>
+                        <input name="password" type="password" placeholder="Enter Password"/>
+                        <input name="confirm-password" type="password" placeholder="Confirm Password"/>
+                        <input name="firstName" placeholder="Enter First Name"/>
+                        <input name="lastName" placeholder="Enter Last Name"/>
+                        <input name="email" type="email" placeholder="Enter Email"/>
+                        <input name="address" placeholder="Home Address (so we can send you election resources)"/>
+                        <input name="city" placeholder="Enter City" />
+                        <input name="state" placeholder="Enter State" />
+                        <input name="zipcode" placeholder="Enter Zipcode" />
+                        <button type="submit" value="submit" class="button is-success is-normal">Sign Up</button>
+                    </fieldset>
             </form>
             <a href="/login">Already Have an Account? Login Here!</a>
+                </div>
+            <div class="column"></div>
         </div>
-    </div>
 </section>
 </body>
 </html>
