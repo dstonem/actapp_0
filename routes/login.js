@@ -42,6 +42,7 @@ router.post('/register', async (req,res,next) => {
     let address = req.body.address
     let city = req.body.city
     let state = req.body.state
+    let zipcode = req.body.state
 
     if(req.session) {
         req.session.username = username
@@ -52,9 +53,10 @@ router.post('/register', async (req,res,next) => {
         req.session.address = address
         req.session.city = city
         req.session.state = state
+        req.session.zipcode = zipcode
     }
     
-    let isValid = await User.register(req.session.username, req.session.password, req.session.firstName, req.session.lastName, req.session.email, req.session.address, req.session.city, req.session.state)
+    let isValid = await User.register(req.session.username, req.session.password, req.session.firstName, req.session.lastName, req.session.email, req.session.address, req.session.city, req.session.state, req.session.zipcode)
     
     if(isValid){
         res.redirect('/survey')
