@@ -12,22 +12,23 @@ const loadFile = (evt)=>{
 }
 
 const uploadToServer = (evt) =>{
-        console.log("click")
         //best to commit it as such
         const formData = new FormData();
-        formData.append('upload', file);
+        formData.append('picture', file);
 
         //not nessessay if you are just uploading a single image
-        formData.append('username','req.session.username' )//etc
-        formData.append('Some_other_DB_filed','AnotherValue' )//etc
-
-        console.log(formData);
+        formData.append('body',document.getElementById('body').value )//etc
+        formData.append('tags',document.getElementById('tags').value )//etc
+        console.log(`formData:${formData}`)
         fetch('/upload', {
             method:'POST',
             body:formData
         })
         .then(resp=>resp.json())
-        .then(data=>console.log(data))
+        .then(data=>{
+            console.log(data)
+            window.location = '/feed'
+        })
         .catch(err=>console.log(err))
     
 }

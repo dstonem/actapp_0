@@ -26,10 +26,17 @@
     </section>
     <div id="upload-image">
         <div id="image-to-Upload"></div>
-        <!-- <form action="/upload" method="post"> -->
-            <input type="file" accept="image/*" name="upload" id="upload" />
-            <button id="submit" class="hidden">Upload</button>
-        <!-- </form> -->
+            <fieldset>
+                <legend>Upload Image</legend>
+                <input type="file" accept="image/*" name="picurl" id="upload" />
+            </fieldset>
+            <fieldset>
+                <legend>Create Post</legend>
+                                                            <!-- REPLACE THIS WITH ACTION ITEM EVENTUALLY <input name="title" placeholder="Title"/> -->
+                <input id="body" name="body" placeholder="Body"/>
+                <input id="tags" name="tags" placeholder="Tags"/>
+                <button id="submit" type="submit" class="hidden">Upload</button>
+            </fieldset>
     </div>
     <div id="images">
 

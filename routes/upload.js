@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const bodyParser = require('body-parser')
 const formidable = require('formidable');
+const Post = require('../models/post-db-logic')()
 const path = require('path')
 
 router.use(bodyParser.urlencoded({ extended:true }))
@@ -18,29 +19,35 @@ router.post("/", (req,res)=>{
     new formidable.IncomingForm().parse(req)
     .on('field', (name, field) => {
         form[name] = field;
+        //form.profile image is undefined here: console.log(`form.profile_image:${form.profile_image}`)
+        console.log(`form[name]:${name},${form[name]}`)
       })
     .on('fileBegin', (name, file) => {
         //sets the path to save the image
-        
+        console.log(`is it even doing this fileBegin?: ${name}`)
         //NEXT STEP: try to get this file path working
         file.path = __dirname.replace('routes','') + 'public/images/' + new Date().getTime() + file.name
     })
     .on('file', (name, file) => {
         //console.log('Uploaded file', name, file);
-        console.log(path.join(__dirname).replace('routes',''))
-        console.log(file.path)
+        console.log("is it even doing this fileBegin?")
         //can use what the form.profile_image returns as an images src when using it elsewhere
-        form.profile_image = file.path.replace(__dirname.replace('routes','')+'public',"");
+        form.picurl = file.path.replace(__dirname.replace('routes','')+'public',"");
+        console.log(`form.profile_image: ${form.picurl}`)
     })
-    .on('end', ()=>{
-        console.log(form);
-        //Now i can save the form to the database
-        //db.createItem(form)//not exact code here
-        //.then(result=>res.send(result))
-        res.redirect('/feed')
+    .on('end', async ()=>{
+
+        console.log(`SESSION VALUES: picurl: ${form.picurl}, user_id: ${req.session.user_id}, body: ${form.body}, tags:${form.tags}`)
+        let isValid = await Post.createPost(form.picurl, form.body, form.tags, req.session.user_id)
+        
+        if(isValid){
+            res.send(isValid)
+        } else {
+            res.send({error: "needs more data"})
+        }
         
     })
-    
+
 })
 
 module.exports = router

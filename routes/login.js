@@ -15,15 +15,18 @@ router.get('/', (req,res,next) => {
 router.post('/', async (req,res,next) => {
     let username = req.body.username
     let password = req.body.password
+    let user_id
 
     if(req.session) {
         req.session.username = username
         req.session.password = password
+        req.session.user_id = user_id
     }
 
     let isValid = await User.login(req.session.username,req.session.password)
-
+    console.log(`User ID: ${isValid.id}`)
     if(isValid){
+        req.session.user_id = isValid.id
         res.redirect('/feed')
     } else {
         res.render('login',{locals:{message:"Username and/or password invalid. Try again."}})
@@ -47,6 +50,7 @@ router.post('/register', async (req,res,next) => {
     let cause1 = req.body.cause1
     let cause2 = req.body.cause2
     let cause3 = req.body.cause3
+    let user_id
 
     if(req.session) {
         req.session.username = username
@@ -61,11 +65,14 @@ router.post('/register', async (req,res,next) => {
         req.session.cause1 = cause1
         req.session.cause2 = cause2
         req.session.cause3 = cause3
+        req.session.user_id = user_id
     }
     
     let isValid = await User.register(req.session.username, req.session.password, req.session.firstName, req.session.lastName, req.session.email, req.session.streetaddress, req.session.city, req.session.state, req.session.zipcode, req.session.cause1, req.session.cause2, req.session.cause3)
-    
+
     if(isValid){
+        req.session.user_id = isValid.id
+        console.log(`User ID after registration: ${req.session.user_id}`)
         res.redirect('/login/survey')
     } else {
         res.render('register',{locals: {message: 'Username already exists'}})
