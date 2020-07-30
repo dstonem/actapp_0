@@ -3,6 +3,7 @@ const router = express.Router()
 const bodyParser = require('body-parser')
 const db = require('../db_connection')
 const User = require('../models/users-db-logic')(db,router)
+const authenticate = require('../authenticate')
 
 router.use(bodyParser.urlencoded({extended:true}))
 
@@ -39,9 +40,13 @@ router.post('/register', async (req,res,next) => {
     let firstName = req.body.firstName
     let lastName = req.body.lastName
     let email = req.body.email
-    let address = req.body.address
+    let streetaddress = req.body.streetaddress
     let city = req.body.city
     let state = req.body.state
+    let zipcode = req.body.state
+    let cause1 = req.body.cause1
+    let cause2 = req.body.cause2
+    let cause3 = req.body.cause3
 
     if(req.session) {
         req.session.username = username
@@ -49,31 +54,61 @@ router.post('/register', async (req,res,next) => {
         req.session.firstName = firstName
         req.session.lastName = lastName
         req.session.email = email
-        req.session.address = address
+        req.session.streetaddress = streetaddress
         req.session.city = city
         req.session.state = state
+        req.session.zipcode = zipcode
+        req.session.cause1 = cause1
+        req.session.cause2 = cause2
+        req.session.cause3 = cause3
     }
     
-    let isValid = await User.register(req.session.username, req.session.password, req.session.firstName, req.session.lastName, req.session.email, req.session.address, req.session.city, req.session.state)
+    let isValid = await User.register(req.session.username, req.session.password, req.session.firstName, req.session.lastName, req.session.email, req.session.streetaddress, req.session.city, req.session.state, req.session.zipcode, req.session.cause1, req.session.cause2, req.session.cause3)
     
     if(isValid){
-        res.redirect('/survey')
+        res.redirect('/login/survey')
     } else {
         res.render('register',{locals: {message: 'Username already exists'}})
     }
     
 })
 
-router.get('/survey',(req, res, next) =>{
-    res.render('survey')
+router.get('/survey',authenticate,(req, res, next) =>{
+    res.render('survey',{locals:{message:""}})
 })
 
-router.post('/survey',(req, res, next) =>{
-    res.redirect('/feed')
+router.post('/survey', async (req, res, next) => {
+    let cause1 = req.body.cause1
+    let cause2 = req.body.cause2
+    let cause3 = req.body.cause3
+
+    if(req.session){
+        req.session.cause1 = cause1
+        req.session.cause2 = cause2
+        req.session.cause3 = cause3
+    }
+
+    // console.log(cause1)
+
+    let isValid = await User.storeUsersCauses(req.session.cause1, req.session.cause2, req.session.cause3, req.session.username)
+    
+    // console.log(isValid)
+
+    if(isValid){
+        res.redirect('/feed')
+    } else {
+        res.render('survey',{locals:{message:"Please select at least one cause"}})
+    }
+    
+    
 })
 
 router.get('/updateUser', (req, res, next) =>{
-    res.render('updateUser')
+    res.render('updateUser',{
+        locals:{
+            user:req.session
+        }
+    })
 })
 
 router.post('/updateUser', (req, res, next) =>{
@@ -82,13 +117,13 @@ router.post('/updateUser', (req, res, next) =>{
     let firstName = req.body.firstName
     let lastName = req.body.lastName
     let email = req.body.email
-    let address = req.body.address
+    let streetaddress = req.body.streetaddress
     let city = req.body.city
     let state = req.body.state
-    let userId = req.session.users.id
+    let zipcode = req.session.zipcode
 
-    db.none('INSERT INTO users(username,password,firstName,lastName,email,address,city,state,userId) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$3)', 
-    [username, password, firstName, lastName, email, address, city, state, userId])
+    db.none('INSERT INTO users(username,password,firstName,lastName,email,streetaddress,city,state,userId) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)', 
+    [username, password, firstName, lastName, email, streetaddress, city, state, zipcode])
     .then(() => {
         res.send("SUCCESS")
     })

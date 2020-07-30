@@ -22,21 +22,46 @@
     </style>
 </head>
 <body>
-    <body>
-    <section class="hero has-background-black">
+    <form action="/login/survey" method="post">
+        <p>${message}</p>
+        <section class="hero has-background-black">
             <div class="hero-body">
                 <div class="container">
                         <h1 class="h1 title is-1">ACT App</h1>
                 </div>
             </div>
-    </section>
-    <section class="section has-background-light">
-        <div class="mostcontainter">
-            <div class="columns">
+        </section>
+        <section class="section has-background-light">
+            <div class="mostcontainter">
+                <div class="columns">
+                    <div class="column">
+                        <div class="notification">
+                        <label for="causes" class="title is-size-4">Pick a Cause that Most Matters to You:</label>
+                            <select id="dropdown" name="cause1">
+                                <option value="" disabled selected>Select your option</option>
+                                <option value="blm">Black Lives Matter</option>
+                                <option value="election">Upcoming Election</option>
+                                <option value="climate">Climate Change</option>
+                                <option value="youth">Youth Development Services</option>
+                            </select>
+                        </div>
+                    </div>
                 <div class="column">
                     <div class="notification">
-                    <label for="causes" class="title is-size-4">Pick a Cause that Most Matters to You:</label>
-                        <select id="dropdown">
+                    <label for="causes" class="title is-size-4">Pick a Cause that Moderately Matters to You:</label>
+                        <select id="dropdown" name="cause1">
+                            <option value="" disabled selected>Select your option</option>
+                            <option value="blm">Black Lives Matter</option>
+                            <option value="election">Upcoming Election</option>
+                            <option value="climate">Climate Change</option>
+                            <option value="youth">Youth Development Services</option>
+                        </select>
+                </div>
+                </div>
+                <div class="column">
+                    <div class="notification">
+                    <label for="causes" class="title is-size-4">Pick a Cause that Least Matters to You:</label>
+                        <select id="dropdown" name="cause1">
                             <option value="" disabled selected>Select your option</option>
                             <option value="blm">Black Lives Matter</option>
                             <option value="election">Upcoming Election</option>
@@ -45,41 +70,18 @@
                         </select>
                     </div>
                 </div>
-            <div class="column">
-                <div class="notification">
-                <label for="causes" class="title is-size-4">Pick a Cause that Moderately Matters to You:</label>
-                    <select id="dropdown">
-                        <option value="" disabled selected>Select your option</option>
-                        <option value="blm">Black Lives Matter</option>
-                        <option value="election">Upcoming Election</option>
-                        <option value="climate">Climate Change</option>
-                        <option value="youth">Youth Development Services</option>
-                    </select>
             </div>
-            </div>
-            <div class="column">
-                <div class="notification">
-                <label for="causes" class="title is-size-4">Pick a Cause that Least Matters to You:</label>
-                    <select id="dropdown">
-                        <option value="" disabled selected>Select your option</option>
-                        <option value="blm">Black Lives Matter</option>
-                        <option value="election">Upcoming Election</option>
-                        <option value="climate">Climate Change</option>
-                        <option value="youth">Youth Development Services</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section>
-        <div class="columns">
-            <div class="column"></div>
-            <div class="column">
-                <div class="buttoncontain">
-                    <button type="submit" value="submit" class="button is-success is-normal">Submit</button>
+        </section>
+        <section>
+            <div class="columns">
+                <div class="column"></div>
+                <div class="column">
+                    <div class="buttoncontain">
+                        <button type="submit" value="submit" class="button is-success is-normal">
+                        </div>
                     </div>
-                </div>
-            <div class="column"></div>
-    </section>       
+                <div class="column"></div>
+        </section> 
+    </form>      
 </body> 
 </html>
