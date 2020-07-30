@@ -19,6 +19,7 @@ create table posts (
     title VARCHAR(30) not null,
     body VARCHAR not null,
     url text not null,
+    tags VARCHAR,
     user_id integer references users (id)
 );
 
@@ -46,19 +47,20 @@ create table tags_posts (
 );
 
 insert into users (username,password,firstName,lastName,email,streetaddress,city,state,zipcode)
+
 values 
     ('dstonem','123456','dylan','stone-miller','dstonemiller@gmail.com', '1234 Marsh Trail Circle', 'Sandy Springs', 'Georgia', '29307'),
     ('npatton','123456','nathan','patton','npatton@gmail.com', '1234 Ashford Road', 'Atlanta', 'Georgia', '22236')
 ;
 
-insert into posts (title,body,url,user_id) 
+insert into posts (title,body,url,tags,user_id) 
 values
-    ('title','body','dylan_photo_1',1),
-    ('title','body','dylan_photo_2',1),
-    ('title','body','dylan_photo_3',1),
-    ('title','body','nathan_photo_1',2),
-    ('title','body','nathan_photo_2',2),
-    ('title','body','nathan_photo_3',2)
+    ('title','body','dylan_photo_1','',1),
+    ('title','body','dylan_photo_2','',1),
+    ('title','body','dylan_photo_3','',1),
+    ('title','body','nathan_photo_1','',2),
+    ('title','body','nathan_photo_2','',2),
+    ('title','body','nathan_photo_3','',2)
 ;
 
 -- start with the ONE and end with the MANY
