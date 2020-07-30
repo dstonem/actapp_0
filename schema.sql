@@ -4,11 +4,14 @@ create table users (
     password VARCHAR(100) not null,
     firstName text not null,
     lastName text not null,
-    email VARCHAR not null,
-    address VARCHAR not null,
+    email VARCHAR UNIQUE not null,
+    streetaddress VARCHAR not null,
     city VARCHAR not null,
     state VARCHAR not null,
-    zipcode VARCHAR not null
+    zipcode VARCHAR not null,
+    cause_one TEXT,
+    cause_two TEXT,
+    cause_three TEXT
 );
 
 create table posts (
@@ -43,7 +46,8 @@ create table tags_posts (
     post_id VARCHAR
 );
 
-insert into users (username,password,firstName,lastName,email,address,city,state, zipcode)
+insert into users (username,password,firstName,lastName,email,streetaddress,city,state,zipcode)
+
 values 
     ('dstonem','123456','dylan','stone-miller','dstonemiller@gmail.com', '1234 Marsh Trail Circle', 'Sandy Springs', 'Georgia', '29307'),
     ('npatton','123456','nathan','patton','npatton@gmail.com', '1234 Ashford Road', 'Atlanta', 'Georgia', '22236')

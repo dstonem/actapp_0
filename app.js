@@ -3,6 +3,7 @@ const app = express()
 const {secret} = require('./config')
 const port = 4321
 const path = require('path')
+const authenticate = require('./authenticate')
 
 const userRoutes = require('./routes/login')
 const feedRoutes = require('./routes/feed')
@@ -23,17 +24,6 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }))
-
-let authenticate = (req,res,next) => {
-    
-    //if session password matches database password?
-    if(req.session.password){
-        next()
-    } else {
-        res.redirect('/login')
-    }
-    
-}
 
 app.use(express.static("public"))
 app.use('/login',userRoutes)
