@@ -16,7 +16,9 @@ let User = () => {
                 if(error == null){
                     console.log(username,hash,firstName)
                     let name = db.one('INSERT INTO users (username,password,firstName,lastName,email) VALUES($1,$2,$3,$4,$5) RETURNING firstName',[`${username}`,`${hash}`,`${firstName}`,`${lastName}`,`${email}`])
+                    console.log(name)
                     return name
+                    
                 }
             })
             return true
