@@ -11,9 +11,9 @@ let Post = () => {
             return newPost
         }
 
-    const selectPost = async (picurl) => {
-        let selectedPost = await db.one(`SELECT * FROM posts WHERE picurl = '${picurl}'`)
-        return selectedPost
+    const selectAllPostsFromCategory = async (tags) => {
+        let postsInCategory = await db.one(`SELECT * FROM posts WHERE tags = '${tags}'`)
+        return postsInCategory
     }
 
     const selectAllFromUser = async (user_id) => {
@@ -38,7 +38,7 @@ let Post = () => {
 
     return {
         createPost,
-        selectPost,
+        selectAllPostsFromCategory,
         selectAllFromUser
         // searchPost
     }
