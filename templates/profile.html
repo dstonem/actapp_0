@@ -11,6 +11,28 @@
             align-items: center;
             color:white;
         }
+        img {
+            max-width:60vh;
+            max-height:60vh;
+            width:100%;
+        }
+        #profile-info {
+            display: flex;
+            justify-content: space-around;
+            width:100%;
+            margin:25px 0px;
+            font-size: 3em;
+        }
+        #profile-feed {
+            width:67%;
+            height:800px;
+            overflow: scroll;
+        }
+        #profile-img {
+            border-radius: 50%;
+            max-width:250px;
+            max-height:250px;
+        }
     </style>
     <title>Profile</title>
 </head>
@@ -22,6 +44,19 @@
             </div>
         </div>
     </section>
-    <h1>Profile</h1>
+    
+    <div id="profile-info">
+        <!-- Need to change the src here to a profile pic pulled from the database -->
+        <img id="profile-img" src="./images/1596137483482Sabata101.png">
+        <h2>firstName</h2>
+        <button id="showFeed">Show Feed</button>
+    </div>
+    <div id="profile-feed">
+        <!-- <img src="./images/1596136990391goveri_logotype2shadow.png">
+        <img src="./images/1596130545240patrick-hendry--AbeoL252z0-unsplash.jpg">
+        <img src="./images/1596137483482Sabata101.png"> -->
+    </div>
+    ${footerNav}
+    <script src="/js/img-to-profile.js" type="module"></script>
 </body>
 </html>

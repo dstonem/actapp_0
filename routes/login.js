@@ -9,7 +9,12 @@ router.use(bodyParser.urlencoded({extended:true}))
 
 router.get('/', (req,res,next) => {
     let user = {username:req.session.username,password:req.session.password}
-    res.render('login',{locals:{user,message:""}})
+    res.render('login',{
+        locals:{
+            user,
+            message:""
+        }
+    })
 })
 
 router.post('/', async (req,res,next) => {
