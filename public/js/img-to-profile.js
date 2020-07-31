@@ -1,24 +1,11 @@
 
 
-const pullPostDataFromServer = () => {
+const pullPostDataFromServer = async () => {
 
-    let allUsersPosts = []
-
-    console.log('working')
-
-    fetch('/profile', {
+    let allUsersPosts = await fetch('/profile', {
         method:'POST'
     })
-    .then(resp=>resp.json())
-    .then(data=>{
-        for(let i = 0; i < data.length;i++){
-            allUsersPosts.push(data[i].picurl)
-        }
-        console.log(`allUsersPosts: ${allUsersPosts}`)
-    })
-    .catch(err=>console.log(err))
-
-    console.log(`allUsersPosts.length: ${allUsersPosts.length}`)
+    allUsersPosts = await allUsersPosts.json()
 
     let profileFeed = []
 
@@ -36,9 +23,6 @@ const pullPostDataFromServer = () => {
     console.log(profileFeed)
 
 }
-
-let button = document.getElementById('showFeed')
-button.addEventListener('click',pullPostDataFromServer)
-// window.onload(pullPostDataFromServer)
-
-module.exports = pullPostDataFromServer
+// let button = document.getElementById('showFeed')
+// button.addEventListener('click',pullPostDataFromServer)
+window.addEventListener('DOMContentLoaded',pullPostDataFromServer)
