@@ -389,3 +389,9 @@ app.get('/style.css', (req, res)=>res.sendFile(__dirname + '/style.css'))
   –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
   /* End Base Plate for CSS */
+
+  .footerNav {
+    display:flex;
+    justify-content: space-around;
+    width:100%;
+  }

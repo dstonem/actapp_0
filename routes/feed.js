@@ -9,7 +9,14 @@ router.use(bodyParser.urlencoded({ extended:true }))
 
 router.get('/',(req,res) => {
     let firstName = req.session.firstName
-    res.render('feed',{locals:{firstName}})
+    res.render('feed',{
+        locals:{
+            firstName
+        },
+        partials:{
+            footerNav: 'partials/footerNav'
+        }
+})
 })
 
 router.get('/createPost',(req, res, next) =>{
