@@ -40,3 +40,5 @@ const pullPostDataFromServer = () => {
 let button = document.getElementById('showFeed')
 button.addEventListener('click',pullPostDataFromServer)
 // window.onload(pullPostDataFromServer)
+
+module.exports = pullPostDataFromServer

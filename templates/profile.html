@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="/css/style.css">
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script> -->
+    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
     <style>
         .h1 {
             display: flex;
@@ -11,10 +11,31 @@
             align-items: center;
             color:white;
         }
+        img {
+            max-width:60vh;
+            max-height:60vh;
+            width:100%;
+        }
+        #profile-info {
+            display: flex;
+            justify-content: space-around;
+            width:100%;
+            margin:25px 0px;
+            font-size: 3em;
+        }
+        #profile-feed {
+            width:67%;
+            height:800px;
+            overflow: scroll;
+        }
+        #profile-img {
+            border-radius: 50%;
+            max-width:250px;
+            max-height:250px;
+        }
     </style>
     <title>Profile</title>
 </head>
-<nav</nav>
 <body>
     <section class="hero has-background-black">
         <div class="hero-body">
@@ -23,6 +44,19 @@
             </div>
         </div>
     </section>
-    <h1>Profile</h1>
+    
+    <div id="profile-info">
+        <!-- Need to change the src here to a profile pic pulled from the database -->
+        <img id="profile-img" src="./images/1596137483482Sabata101.png">
+        <h2>firstName</h2>
+        <button id="showFeed">Show Feed</button>
+    </div>
+    <div id="profile-feed">
+        <!-- <img src="./images/1596136990391goveri_logotype2shadow.png">
+        <img src="./images/1596130545240patrick-hendry--AbeoL252z0-unsplash.jpg">
+        <img src="./images/1596137483482Sabata101.png"> -->
+    </div>
+    ${footerNav}
+    <script src="/js/img-to-profile.js" type="module"></script>
 </body>
 </html>
