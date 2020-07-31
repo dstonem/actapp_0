@@ -23,7 +23,6 @@ const pullPostDataFromServer = async () => {
     console.log(profileFeed)
 
 }
-
 // let button = document.getElementById('showFeed')
 // button.addEventListener('click',pullPostDataFromServer)
 window.addEventListener('DOMContentLoaded',pullPostDataFromServer)
