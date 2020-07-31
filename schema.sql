@@ -16,9 +16,8 @@ create table users (
 
 create table posts (
     id SERIAL PRIMARY KEY,
-    title VARCHAR(30) not null,
+    picurl text not null,
     body VARCHAR not null,
-    url text not null,
     tags VARCHAR,
     user_id integer references users (id)
 );
@@ -53,18 +52,18 @@ values
     ('npatton','123456','nathan','patton','npatton@gmail.com', '1234 Ashford Road', 'Atlanta', 'Georgia', '22236')
 ;
 
-insert into posts (title,body,url,tags,user_id) 
+insert into posts (picurl,body,tags,user_id) 
 values
-    ('title','body','dylan_photo_1','',1),
-    ('title','body','dylan_photo_2','',1),
-    ('title','body','dylan_photo_3','',1),
-    ('title','body','nathan_photo_1','',2),
-    ('title','body','nathan_photo_2','',2),
-    ('title','body','nathan_photo_3','',2)
+    ('e.jpg','body','hashtag',1),
+    ('e.jpg','body','hashtag',1),
+    ('e.jpg','body','hashtag',1),
+    ('e.jpg','body','nhashtag',2),
+    ('e.jpg','body','nhashtag',2),
+    ('e.jpg','body','nhashtag',2)
 ;
 
 -- start with the ONE and end with the MANY
-select users.id as uid, users.username, users.firstName, posts.id as pid, posts.url
+select users.id as uid, users.username, users.firstName, posts.id as pid, posts.picurl
     from users join posts
     on posts.user_id = users.id
 
