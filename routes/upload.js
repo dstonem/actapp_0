@@ -8,7 +8,11 @@ const path = require('path')
 router.use(bodyParser.urlencoded({ extended:true }))
 
 router.get('/',(req,res) => {
-    res.render('upload')
+    res.render('upload',{
+        partials:{
+            footerNav: 'partials/footerNav'
+        }
+    })
 })
 
 router.post("/", (req,res)=>{
@@ -41,6 +45,9 @@ router.post("/", (req,res)=>{
         let isValid = await Post.createPost(form.picurl, form.body, form.tags, req.session.user_id)
         
         if(isValid){
+            let currentPost = await Post.selectPost(form.picurl)
+            let feed = []
+            feed.append(currentPost)
             res.send(isValid)
         } else {
             res.send({error: "needs more data"})

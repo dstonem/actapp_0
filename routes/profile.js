@@ -1,11 +1,23 @@
 const express = require('express')
 const router = express.Router()
 const bodyParser = require('body-parser')
+const Post = require('../models/post-db-logic')()
 
 router.use(bodyParser.urlencoded({ extended:true }))
 
-router.get('/',(req,res) => {
-    res.render('profile')
+router.get('/',async (req,res) => {
+    // let isLoaded = await Post.selectAllFromUser(req.session.user_id)
+    // res.send(isLoaded)
+    res.render('profile',{
+        partials:{
+            footerNav: 'partials/footerNav'
+        }
+    })
+})
+
+router.post('/',async (req,res) => {
+    let isLoaded = await Post.selectAllFromUser(req.session.user_id)
+    res.send(isLoaded)
 })
 
 

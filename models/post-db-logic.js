@@ -10,6 +10,16 @@ let Post = () => {
             console.log(newPost)
             return newPost
         }
+
+    const selectPost = async (picurl) => {
+        let selectedPost = await db.one(`SELECT * FROM posts WHERE picurl = '${picurl}'`)
+        return selectedPost
+    }
+
+    const selectAllFromUser = async (user_id) => {
+        let usersPosts = await db.any(`SELECT * FROM posts WHERE user_id = '${user_id}'`)
+        return usersPosts
+    }
     
     // const searchPost = async () => {
     //     let post = await db.none(`SELECT id FROM posts WHERE picurl = '${picurl}'`)
@@ -27,7 +37,9 @@ let Post = () => {
 
 
     return {
-        createPost
+        createPost,
+        selectPost,
+        selectAllFromUser
         // searchPost
     }
     
