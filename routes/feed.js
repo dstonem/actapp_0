@@ -2,8 +2,7 @@ const express = require('express')
 const router = express.Router()
 const bodyParser = require('body-parser')
 const db = require('../db_connection')
-const formidable = require('formidable');
-const posts = require('../models/post-db-logic')(db,router)
+const Post = require('../models/post-db-logic')()
 
 router.use(bodyParser.urlencoded({ extended:true }))
 
@@ -14,37 +13,40 @@ router.get('/',(req,res) => {
             firstName
         },
         partials:{
-            footerNav: 'partials/footerNav'
+            headerNav: 'partials/headerNav'
         }
 })
 })
 
-router.get('/createPost',(req, res, next) =>{
-    res.render('createPost')
-})
+router.post('/',async (req,res) => {
+    let usersCauses = await Post.selectUsersCauses(req.session.user_id)
+    console.log(`usersCauses.cause_one:${usersCauses}`)
+    let postsFromCauseOne = await Post.selectAllPostsFromCause(usersCauses.cause_one)
+    let postsFromCauseTwo = await Post.selectAllPostsFromCause(usersCauses.cause_two)
+    let postsFromCauseThree = await Post.selectAllPostsFromCause(usersCauses.cause_three)
 
-router.post('/createPost', async (req,res,next) => {
-    let title = req.body.title
-    let body = req.body.body
-    let picurl = req.body.picurl
-    let tags = req.body.tags
-
-    if(req.session) {
-        req.session.title = title
-        req.session.body = body
-        req.session.picurl = picurl
-        req.session.tags = tags
+    let postsFromUsersCauses = []
+    //how could we do this with .map?
+    //PUSHING EACH OF THE POSTS FROM EACH CATEGORY INTO THE postsFromUsersCauses ARRAY
+    for(let i = 0; i < postsFromCauseOne.length; i++){
+        postsFromUsersCauses.push(postsFromCauseOne[i])
     }
 
-    console.log(req.session.user_id)
-    let isValid = await posts.createPost(title, body, picurl, tags, req.session.user_id)
-    
-    if(isValid){
-        res.redirect('/feed')
-    } else {
-        res.render('createPost',{locals: {message: 'Duplicate post'}})
+    for(let i = 0; i < postsFromCauseTwo.length; i++){
+        postsFromUsersCauses.push(postsFromCauseTwo[i])
+    }
+
+    for(let i = 0; i < postsFromCauseThree.length; i++){
+        postsFromUsersCauses.push(postsFromCauseThree[i])
     }
     
+    // for(let i = 0; i < usersCauses.length; i++){
+    //     postsFromCause[i] = await Post.selectAllPostsFromCause(usersCauses[i].value)
+    //     console.log(`causesLoaded[i]: ${postsFromCause[i]}`)
+    // }
+    console.log(`postsFromUsersCauses: ${postsFromUsersCauses}`)
+    res.send(postsFromUsersCauses)
+
 })
 
 module.exports = router

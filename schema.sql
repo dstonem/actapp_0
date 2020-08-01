@@ -9,6 +9,7 @@ create table users (
     city VARCHAR not null,
     state VARCHAR not null,
     zipcode VARCHAR not null,
+    profilePic VARCHAR,
     cause_one TEXT,
     cause_two TEXT,
     cause_three TEXT
@@ -19,7 +20,10 @@ create table posts (
     picurl text not null,
     body VARCHAR not null,
     tags VARCHAR,
-    user_id integer references users (id)
+    user_id integer references users (id),
+    username VARCHAR references users (username),
+    firstName VARCHAR references users (firstName),
+    userPic VARCHAR references users (profilePic)
 );
 
 create table likes (

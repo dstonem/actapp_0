@@ -10,7 +10,7 @@ router.get('/',async (req,res) => {
     // res.send(isLoaded)
     res.render('profile',{
         partials:{
-            footerNav: 'partials/footerNav'
+            headerNav: 'partials/headerNav'
         }
     })
 })

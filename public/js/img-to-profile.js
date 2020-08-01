@@ -1,5 +1,3 @@
-
-
 const pullPostDataFromServer = async () => {
 
     let allUsersPosts = await fetch('/profile', {
@@ -23,6 +21,5 @@ const pullPostDataFromServer = async () => {
     console.log(profileFeed)
 
 }
-// let button = document.getElementById('showFeed')
-// button.addEventListener('click',pullPostDataFromServer)
+
 window.addEventListener('DOMContentLoaded',pullPostDataFromServer)

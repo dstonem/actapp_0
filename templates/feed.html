@@ -6,90 +6,18 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
     <style>
-    h1, h2 {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color:white;
-        
-    }
 
-    .gallery {
-        display: grid;
-        grid-template-columns: repeat(8, 1fr);
-        grid-template-rows: repeat(8, 5vw);
-        grid-gap: 15px;
-    }
-    .gallery__item--1 {
-        grid-column-start: 1;
-        grid-column-end: 3;
-        grid-row-start: 1;
-        grid-row-end: 3;
-}
-
-    .gallery__item--2 {
-        grid-column-start: 3;
-        grid-column-end: 5;
-        grid-row-start: 1;
-        grid-row-end: 3;
-    }
-
-    .gallery__item--3 {
-        grid-column-start: 5;
-        grid-column-end: 9;
-        grid-row-start: 1;
-        grid-row-end: 6;
-    }
-
-    .gallery__item--4 {
-        grid-column-start: 1;
-        grid-column-end: 5;
-        grid-row-start: 3;
-        grid-row-end: 6;
-    }
-
-    .gallery__item--5 {
-        grid-column-start: 1;
-        grid-column-end: 5;
-        grid-row-start: 6;
-        grid-row-end: 9;
-    }
     </style>
 
     <title>Feed</title>
 </head>
 <body>
-    <section class="hero is-success">
-        <h1 class="title is-1">Feed</h1>
-        <h2 class="title is-2">Welcome ${firstName}!</h2>
-        <div>
-            
-            <a href="/upload"><button type="submit">+</button></a>
-            
-        </div>
-    </section>
+    ${headerNav}
     <section>
-        <div class="column">
-            <figure class="gallery__item gallery__item--1">
-                <img src="https://unsplash.com/photos/eQoyMxQbbbA" class="gallery__img" alt="Image 1">
-            </figure>
-            <figure class="gallery__item gallery__item--2">
-                <img src="https://unsplash.com/photos/36L4Jqh-lks" class="gallery__img" alt="Image 2">
-            </figure>
-            <figure class="gallery__item gallery__item--3">
-                <img src="https://unsplash.com/photos/Ui8rcq9bG90" class="gallery__img" alt="Image 3">
-            </figure>
-            <figure class="gallery__item gallery__item--4">
-                <img src="/public/images/1596049631673john-mark-smith-IS7WfX_f_ug-unsplash.jpg" class="gallery__img" alt="Image 4">
-            </figure>
-            <figure class="gallery__item gallery__item--5">
-                <img src="/public/images/1596120335195patrick-hendry--AbeoL252z0-unsplash.jpg" class="gallery__img" alt="Image 5">
-            </figure>
-            <figure class="gallery__item gallery__item--6">
-                <img src="/public/images/1596049343619goveri_logotype2shadow (1).png" class="gallery__img" alt="Image 6">
-            </figure>
+        <div id="main-feed" class="column">
+            
         </div>
+        <script src="/js/img-to-feed.js"></script>
     </section>
-    ${footerNav}
 </body>
 </html>
