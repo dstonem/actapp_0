@@ -11,14 +11,20 @@ let Post = () => {
             return newPost
         }
 
-    const selectAllPostsFromCategory = async (tags) => {
-        let postsInCategory = await db.one(`SELECT * FROM posts WHERE tags = '${tags}'`)
-        return postsInCategory
+    const selectAllPostsFromCause = async (usersCauses) => {
+        let postsInCause = await db.any(`SELECT * FROM posts WHERE tags LIKE '${usersCauses}'`)
+        return postsInCause
     }
 
     const selectAllFromUser = async (user_id) => {
         let usersPosts = await db.any(`SELECT * FROM posts WHERE user_id = '${user_id}'`)
         return usersPosts
+    }
+
+    const selectUsersCauses = async (user_id) => {
+        let usersCauses = await db.one(`SELECT cause_one, cause_two, cause_three FROM users WHERE id = '${user_id}'`)
+        console.log(usersCauses)
+        return usersCauses
     }
     
     // const searchPost = async () => {
@@ -38,8 +44,9 @@ let Post = () => {
 
     return {
         createPost,
-        selectAllPostsFromCategory,
-        selectAllFromUser
+        selectAllFromUser,
+        selectAllPostsFromCause,
+        selectUsersCauses
         // searchPost
     }
     
