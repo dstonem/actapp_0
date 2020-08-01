@@ -395,3 +395,46 @@ app.get('/style.css', (req, res)=>res.sendFile(__dirname + '/style.css'))
     justify-content: space-around;
     width:100%;
   }
+
+
+  .h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:white;
+}
+img {
+    max-width:60vh;
+    max-height:60vh;
+    width:100%;
+}
+#profile-info {
+    display: flex;
+    justify-content: space-around;
+    width:100%;
+    margin:25px 0px;
+    font-size: 3em;
+}
+#profile-feed {
+    width:67%;
+    height:800px;
+    overflow: scroll;
+}
+#profile-img {
+    border-radius: 50%;
+    max-width:250px;
+    max-height:250px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 100px;
+  margin: auto;
+  text-align: center;
+  display: flex;
+}
+
+.title {
+  color: grey;
+  font-size: 18px;
+}

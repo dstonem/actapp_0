@@ -14,7 +14,8 @@ router.get('/',(req,res) => {
             firstName
         },
         partials:{
-            footerNav: 'partials/footerNav'
+            footerNav: 'partials/footerNav',
+            headerNav: 'partials/header'
         }
 })
 })

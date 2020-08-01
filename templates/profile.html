@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="/public/css/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-    <style>
+    <link rel="stylesheet" type="css/html" href="/public/css/style.css">
+    <!-- <style>
         .h1 {
             display: flex;
             justify-content: center;
@@ -33,24 +31,19 @@
             max-width:250px;
             max-height:250px;
         }
-    </style>
+    </style> -->
     <title>Profile</title>
 </head>
 <body>
-    <section class="hero has-background-black">
-        <div class="hero-body">
+        <div class="card" id="profile-info">
             <div class="container">
-                    <h1 class="h1 title is-1">ACT App</h1>
+                <img id="profile-img" src="./images/1596137483482Sabata101.png">
+                <h1>firstName</h1>
+        <!-- Need to change the src here to a profile pic pulled from the database -->
+                <button id="showFeed">Show Feed</button>
             </div>
         </div>
-    </section>
-    
-    <div id="profile-info">
-        <!-- Need to change the src here to a profile pic pulled from the database -->
-        <img id="profile-img" src="./images/1596137483482Sabata101.png">
-        <h2>firstName</h2>
-        <button id="showFeed">Show Feed</button>
-    </div>
+
     <div id="profile-feed">
         <!-- <img src="./images/1596136990391goveri_logotype2shadow.png">
         <img src="./images/1596130545240patrick-hendry--AbeoL252z0-unsplash.jpg">
