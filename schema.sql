@@ -19,16 +19,15 @@ create table posts (
     id SERIAL PRIMARY KEY,
     picurl text not null,
     body VARCHAR not null,
-    tags VARCHAR,
+    causes VARCHAR,
+    likes INTEGER,
     user_id integer references users (id),
-    username VARCHAR references users (username),
-    firstName VARCHAR references users (firstName),
-    userPic VARCHAR references users (profilePic)
+    username VARCHAR references users (username)
 );
 
 create table likes (
-    user_id VARCHAR,
-    post_id VARCHAR
+    user_id integer references users (id),
+    post_id integer references posts (id)
 );
 
 create table comments (
@@ -49,22 +48,31 @@ create table tags_posts (
     post_id VARCHAR
 );
 
-insert into users (username,password,firstName,lastName,email,streetaddress,city,state,zipcode)
+insert into users (username,password,firstName,lastName,email,streetaddress,city,state,zipcode,cause_one,cause_two,cause_three)
 
 values 
-    ('dstonem','123456','dylan','stone-miller','dstonemiller@gmail.com', '1234 Marsh Trail Circle', 'Sandy Springs', 'Georgia', '29307'),
-    ('npatton','123456','nathan','patton','npatton@gmail.com', '1234 Ashford Road', 'Atlanta', 'Georgia', '22236')
+    ('dstonem','123456','dylan','stone-miller','dstonemiller@gmail.com', '1234 Marsh Trail Circle', 'Sandy Springs', 'Georgia', '29307','blm','election','climate'),
+    ('npatton','123456','nathan','patton','npatton@gmail.com', '1234 Ashford Road', 'Atlanta', 'Georgia', '22236','blm','election','climate')
 ;
 
-insert into posts (picurl,body,tags,user_id) 
+insert into posts (picurl,body,causes,likes,user_id,username) 
 values
-    ('e.jpg','body','hashtag',1),
-    ('e.jpg','body','hashtag',1),
-    ('e.jpg','body','hashtag',1),
-    ('e.jpg','body','nhashtag',2),
-    ('e.jpg','body','nhashtag',2),
-    ('e.jpg','body','nhashtag',2)
+    ('/images/1596310291366john-mark-smith-IS7WfX_f_ug-unsplash.jpg','body','blm',9,1,'dstonem'),
+    ('/images/1596310291366john-mark-smith-IS7WfX_f_ug-unsplash.jpg','body','climate',9,1,'dstonem'),
+    ('/images/1596310291366john-mark-smith-IS7WfX_f_ug-unsplash.jpg','body','election',9,1,'dstonem'),
+    ('/images/1596316748869k-mitch-hodge-LBFZfZp7sq4-unsplash.jpg','body','blm',9,2,'npatton'),
+    ('/images/1596316748869k-mitch-hodge-LBFZfZp7sq4-unsplash.jpg','body','climate',9,2,'npatton'),
+    ('/images/1596316748869k-mitch-hodge-LBFZfZp7sq4-unsplash.jpg','body','election',9,2,'npatton')
 ;
+
+insert into likes (user_id, post_id)
+values
+    (1, 1),
+    (1, 2),
+    (1, 3),
+    (2, 4),
+    (2, 5),
+    (2, 6);
 
 -- start with the ONE and end with the MANY
 select users.id as uid, users.username, users.firstName, posts.id as pid, posts.picurl

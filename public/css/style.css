@@ -394,6 +394,7 @@ app.get('/style.css', (req, res)=>res.sendFile(__dirname + '/style.css'))
     width:100%;
     margin:auto;
     overflow:scroll;
+    margin-top: 60px;
   }
 
   .feed-post-container {
@@ -423,6 +424,10 @@ app.get('/style.css', (req, res)=>res.sendFile(__dirname + '/style.css'))
     bottom:89px;
     left:15px;
     border-radius: 50%;
+  }
+
+  .like-icon {
+    width: 15px;
   }
 
   .user-who-posted {
