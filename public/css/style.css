@@ -10,6 +10,8 @@ app.get('/style.css', (req, res)=>res.sendFile(__dirname + '/style.css'))
   are based on 10px sizing. So basically 1.5rem = 15px :) */
   html {
     font-size: 62.5%; }
+
+
   body {
     font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
     line-height: 1.6;
@@ -21,6 +23,7 @@ app.get('/style.css', (req, res)=>res.sendFile(__dirname + '/style.css'))
     height: 100%;
     display: flex;
     justify-content: center;
+    background-color:white;
 }
   
   
@@ -329,7 +332,7 @@ app.get('/style.css', (req, res)=>res.sendFile(__dirname + '/style.css'))
   .form-switch i {
     position: relative;
     display: inline-block;
-   margin-right: .5rem;
+    margin-right: .5rem;
     width: 46px;
     height: 26px;
     background-color: #e6e6e6;
@@ -428,7 +431,7 @@ img {
 
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 100px;
+  max-width: 300px;
   margin: auto;
   text-align: center;
   display: flex;
@@ -437,4 +440,44 @@ img {
 .title {
   color: grey;
   font-size: 18px;
+}
+
+
+.appHeader {
+  grid-area: header;
+  background-color: rgb(55, 182,53);
+  border-top-left-radius: 25px;
+  border-top-right-radius: 15px;
+  padding: 10px 20px 50px 50px;
+  box-shadow: 12px 12px 2px 1px rgba(51, 51, 51);
+  font-family: 'Krona One', sans-serif; 
+
+}
+.upload-container {
+  grid-area: main;
+  background-color: rgb(68, 213, 75);
+  padding: 20px;
+}
+.uploadselection {
+  grid-area: sidebar;
+  background-color: rgb(68, 213, 75);
+  box-shadow: 12px 12px 2px 1px rgba(51, 51, 51);
+  padding: 20px;
+}
+.footerNav {
+  grid-area: footer;
+  background-color:rgb(68, 213, 75);
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  box-shadow: 12px 12px 2px 1px rgba(51, 51, 51);
+}
+
+.uploadPage {
+  display: grid;
+  grid-template-columns: 300px 300px 300px 300px;
+  grid-template-rows: 120px auto 3rem;
+  grid-template-areas: 
+    ". header header ."
+    ". main sidebar ."
+    ". footer footer .";
 }

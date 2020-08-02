@@ -2,8 +2,6 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
     <title>Images</title>
     <style>
         .hidden {
@@ -14,34 +12,45 @@
             max-width:100px;
             max-height:100px;
         }
+
     </style>
 </head>
 <body>
-    <section class="hero has-background-black">
-        <div class="hero-body">
-            <div class="container">
-                    <h1 class="h1 title is-1">ACT App</h1>
-            </div>
+    <div class="uploadPage">
+    <div class="appHeader">
+    <h1>ACT App</h1>
+    </div>
+    <div class="upload-container">
+        <div id="upload-image"></div>
+            <div id="image-to-Upload"></div>
+                            <fieldset>
+                    <legend>Upload Image</legend>
+                    <input type="file" accept="image/*" name="picurl" id="upload" />
+                </fieldset>
+    </div>
+        <div class="uploadselection">
+                <fieldset>
+                    <legend>Create Post</legend>
+                    <input name="caption" type="text" placeholder="Insert A Caption"/>
+                    <input id="body" type="text" name="body" placeholder="Body"/>
+                    <label for="causes" class="title is-size-4">Pick a Tag</label>
+                    <select id="dropdown" name="cause1">
+                        <option value="" disabled selected>Select an Option</option>
+                        <option value="blm">Black Lives Matter</option>
+                        <option value="election">Upcoming Election</option>
+                        <option value="climate">Climate Change</option>
+                        <option value="youth">Youth Development Services</option>
+                    </select>
+                    <button id="submit" type="submit" class="hidden">Upload</button>
+                </fieldset>
         </div>
-    </section>
-    <div id="upload-image">
-        <div id="image-to-Upload"></div>
-            <fieldset>
-                <legend>Upload Image</legend>
-                <input type="file" accept="image/*" name="picurl" id="upload" />
-            </fieldset>
-            <fieldset>
-                <legend>Create Post</legend>
-                                                            <!-- REPLACE THIS WITH ACTION ITEM EVENTUALLY <input name="title" placeholder="Title"/> -->
-                <input id="body" name="body" placeholder="Body"/>
-                <input id="tags" name="tags" placeholder="Tags"/>
-                <button id="submit" type="submit" class="hidden">Upload</button>
-            </fieldset>
-    </div>
     <div id="images">
-
     </div>
+    <div class="footerNav">
     ${footerNav}
+    </div>
+    </div>
     <script src="/js/upload-logic.js" type="module"></script>
+    </div>
 </body>
 </html>
