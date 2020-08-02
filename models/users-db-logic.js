@@ -19,7 +19,7 @@ let User = () => {
                     return name
                 }
             })
-            // console.log(`This person's id is: ${name.id}`)
+            console.log(`This person's id is: ${name.id}`)
             return name
         }
     }

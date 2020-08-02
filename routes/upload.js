@@ -41,8 +41,9 @@ router.post("/", (req,res)=>{
     })
     .on('end', async ()=>{
 
-        console.log(`SESSION VALUES: picurl: ${form.picurl}, user_id: ${req.session.user_id}, body: ${form.body}, tags:${form.tags}`)
-        let isValid = await Post.createPost(form.picurl, form.body, form.tags, req.session.user_id)
+        console.log(`SESSION VALUES: picurl: ${form.picurl}, username: ${req.session.username}, body: ${form.body}, tags:${form.tags}`)
+        //XXXXX needs attention - profilepic
+        let isValid = await Post.createPost(form.picurl, form.body, form.tags, req.session.user_id, req.session.username)
         
         if(isValid){
             // let currentPost = await Post.selectPost(form.picurl)
