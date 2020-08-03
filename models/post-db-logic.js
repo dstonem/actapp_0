@@ -21,6 +21,10 @@ let Post = () => {
         return usersPosts
     }
 
+    const selectIndividualPost = async (post_id) => {
+        return await db.one(`SELECT * FROM posts WHERE id = '${post_id}'`)
+    }
+
     const selectUsersCauses = async (user_id) => {
         let usersCauses = await db.one(`SELECT cause_one, cause_two, cause_three FROM users WHERE id = '${user_id}'`)
         console.log(usersCauses)
@@ -39,13 +43,12 @@ let Post = () => {
     }
 
     const getPostComments = async (post_id) => {
-        let likes = await db.any(`SELECT * FROM comments WHERE post_id = '${post_id}'`)
-        return likes
+        return await db.any(`SELECT * FROM comments WHERE post_id = '${post_id}'`)
     }
 
     const addCommentToPost = async (comment, post_id, user_id, username) => {
-        let newComment = await db.one(`INSERT INTO comments (comment,post_id,user_id,username) VALUES($1,$2,$3,$4) RETURNING *`,[`${comment}`,`${post_id}`,`${user_id}`,`${username}`])
-        return newComment
+        await db.none(`INSERT INTO comments (comment,post_id,user_id,username) VALUES($1,$2,$3,$4)`,[`${comment}`,`${post_id}`,`${user_id}`,`${username}`])
+        return getPostComments(post_id)
     }
     
     // const searchPost = async () => {
@@ -65,6 +68,7 @@ let Post = () => {
 
     return {
         createPost,
+        selectIndividualPost,
         selectAllFromUser,
         selectAllPostsFromCause,
         selectUsersCauses,

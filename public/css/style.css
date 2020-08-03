@@ -449,14 +449,14 @@ Feed
 
   .main-feed-img-container {
     width:500px;
-    height:500px;
+    max-height:750px;
     border:1px solid #eee;
     overflow: hidden;
   }
 
   .main-feed-img-container img {
-    min-width:200%;
-    margin-left:-50%;
+    min-width:100%;
+    margin-left:0%;
     margin-top:-10%;
   }
 

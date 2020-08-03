@@ -9,6 +9,7 @@ const loadFile = (evt)=>{
     FR.readAsDataURL(evt.target.files[0]);
     file = evt.target.files[0];
     document.getElementById("submit").classList.remove("hidden")
+    console.log(file.size)
 }
 
 const uploadToServer = (evt) =>{

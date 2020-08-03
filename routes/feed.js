@@ -74,7 +74,7 @@ router.post('/addlike/:id', async (req,res) => {
 router.post('/getcomments',async (req,res) => {
     console.log('made it to getcomments')
     //XXXXX need to change the integer below to whatever works for req.body
-    let getPostComments = await Post.getPostComments(1)
+    let getPostComments = await Post.getPostComments(req.body.post_id)
     console.log(`getPostComments: ${getPostComments}`)
     res.send(getPostComments)
 })
@@ -82,9 +82,11 @@ router.post('/getcomments',async (req,res) => {
 router.post('/addcomment', async (req,res) => {
     //XXXXXXX need to change the integer below to whatever works from req.body
     //but the comments are getting stored in the database successfully, just need to get req.body passed successfully
-    let addComment = await Post.addCommentToPost('req.body.comment', 1, req.session.user_id, req.session.username)
+    console.log(req.body)
+    
+    let addComment = await Post.addCommentToPost(req.body.comment, req.body.post_id, req.session.user_id, req.session.username)
     console.log(addComment)
-    return addComment
+    res.send(addComment)
 })
 
 module.exports = router
