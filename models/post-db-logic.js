@@ -28,15 +28,14 @@ let Post = () => {
     }
 
     const getPostLikes = async (post_id) => {
-        let likes = await db.one(`SELECT count(*) FROM likes WHERE post_id = '${post_id}'`)
-        return Number(likes.count)
+        return await db.any(`SELECT * FROM likes WHERE post_id = '${post_id}'`)
     }
 
     const likePost = async (user_id,post_id) => {
         //try to return the count of rows with post_id of __ then send it back to the feed.html through img-to-feed
         await db.none(`INSERT INTO likes (user_id,post_id) VALUES ($1,$2)`,[`${user_id}`,`${post_id}`])
-        let likes = db.one(`SELECT count(*) FROM likes WHERE post_id = ${post_id}`)
-        return likes
+        // return await db.any(`SELECT * FROM likes WHERE post_id = '${post_id}'`)
+        return await getPostLikes(post_id)
     }
 
     const getPostComments = async (post_id) => {

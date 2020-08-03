@@ -57,16 +57,19 @@ router.post('/',async (req,res) => {
 
 router.post('/likes',async (req,res) => {
     let getPostLikes = await Post.getPostLikes()
+    console.log(`getPostLikes:${getPostLikes}`)
     res.send(getPostLikes)
 })
 
-router.post('/addlike', async (req,res) => {
+router.post('/addlike/:id', async (req,res) => {
     //XXXXXXX how to get req.body to recognize the post_id, very close
-    console.log(req.body)
+    console.log('*****')
+    console.log(req.params.id)
     //the DB query goes through when i put an integer in for the second argument below...
-    let likePost = await Post.likePost(req.session.user_id,1)
+    let likePost = await Post.likePost(req.session.user_id,req.params.id)
     res.send(likePost)
 })
+
 //NEXT STEPS: get this to display the comments in the commentDiv in img-to-feed
 router.post('/getcomments',async (req,res) => {
     console.log('made it to getcomments')

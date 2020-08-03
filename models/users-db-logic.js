@@ -4,7 +4,6 @@ const SALT_ROUNDS = 10
 const db = require('../db_connection')
 
 let User = () => {
-    let name
     const register = async (username,password,firstName,lastName,email,streetaddress,city,state,zipcode,cause1,cause2,cause3) => {
         let user = await db.oneOrNone(`SELECT id FROM users WHERE username = '${username}'`)
         if(user){
@@ -13,14 +12,13 @@ let User = () => {
         } else {
             
             console.log("isValid",user)
-            bcrypt.hash(password,SALT_ROUNDS, async function(error,hash){
-                if(error == null){
-                    name = await db.one('INSERT INTO users (username,password,firstName,lastName,email,streetaddress,city,state,zipcode,cause_one,cause_two,cause_three) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12) RETURNING id',[`${username}`,`${hash}`,`${firstName}`,`${lastName}`,`${email}`,`${streetaddress}`,`${city}`,`${state}`,`${zipcode}`,`${cause1}`,`${cause2}`,`${cause3}`])
-                    return name
-                }
-            })
-            console.log(`This person's id is: ${name.id}`)
-            return name
+
+            let hashedPassword = await bcrypt.hash(password,SALT_ROUNDS)
+            let newUser = await db.one('INSERT INTO users (username,password,firstName,lastName,email,streetaddress,city,state,zipcode,cause_one,cause_two,cause_three) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12) RETURNING *',[`${username}`,`${hashedPassword}`,`${firstName}`,`${lastName}`,`${email}`,`${streetaddress}`,`${city}`,`${state}`,`${zipcode}`,`${cause1}`,`${cause2}`,`${cause3}`])
+
+            console.log(`*****20`)
+            console.log(`This person's id is: ${newUser.id}`)
+            return newUser
         }
     }
 

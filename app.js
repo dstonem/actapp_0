@@ -35,6 +35,9 @@ app.use(bodyParser.urlencoded({extended:false}))
 
 
 app.get('/',(req,res) => res.send('working'))
+app.get('/me',(req,res) => res.send(
+    {id:req.session.user_id}
+))
 
 app.listen(port, ()=>{
     console.log(`Listening on port http://localhost:${port}`)
