@@ -17,7 +17,14 @@ const pullPostDataFromServer = async () => {
         postLink.setAttribute('href',`/feed#${allUsersPosts[i].id}`)
         let img = document.createElement('img')
         img.setAttribute('src',profileFeed[i])
-        postLink.append(img)
+        img.setAttribute('class','main-feed-img-container')
+        let div = document.createElement('div')
+        div.setAttribute('class','feed-post-container')
+        div.appendChild(img)
+        let main = document.createElement('div')
+        main.setAttribute('id','main-feed')
+        main.appendChild(div)
+        postLink.append(main)
         document.getElementById('profile-feed').appendChild(postLink)
     }
 

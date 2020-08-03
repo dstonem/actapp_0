@@ -117,6 +117,7 @@ const pullPostData = async () => {
         commentBox.className = 'feed-add-comment-box'
         let commentSubmit = document.createElement('button')
         commentSubmit.setAttribute('type','button')
+        commentSubmit.setAttribute('class','post-button')
 
         commentForm.append(commentBox,commentSubmit)
         commentDiv.append(commentForm)
