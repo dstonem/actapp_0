@@ -11,6 +11,26 @@ const addLike = async (evt) => {
     })
 }
 
+const showComments = async (postId,value) => {
+    await fetch('/feed/getcomments', {
+        method:'POST',
+        headers:{
+            'content-type':'application/json'
+        },
+        body:JSON.stringify({
+            comment:value,
+            post_id:postId
+        })
+    })
+    .then(resp=>resp.json())
+    .then(data=>{
+        console.log(data)
+        let results = data.map(comment => `<div><b>${comment.username}</b> ${comment.comment}</div>`).join('')
+        let commentDiv = document.getElementById(`comment_feed_${postId}`)
+        commentDiv.innerHTML = results
+    })
+}
+
 const addComment = async (evt,value) => {
     event.preventDefault()
     let postId = evt.target.parentNode.parentNode.parentNode.parentNode.id
@@ -56,7 +76,12 @@ const pullPostData = async () => {
         sessionMainFeed.push(postsFromUsersCauses[i])
     }
 
+    sessionMainFeed.sort(function(a, b) {
+        return b.id - a.id;
+    })
+
     for(let i = 0; i < sessionMainFeed.length; i++){
+        
         let postContainer = document.createElement('div')
         postContainer.className = "feed-post-container"
         postContainer.setAttribute('id',`${sessionMainFeed[i].id}`)
@@ -141,6 +166,7 @@ const pullPostData = async () => {
 
         let userWhoPostedDiv = document.createElement('div')
         userWhoPostedDiv.className = 'feed-post-user-info-div'
+        showComments(sessionMainFeed[i].id)
         
         imgContainer.append(img)
         postContainer.append(userWhoPosted,imgContainer,causeIcon,postText,commentFeed,commentsAndLikesDiv)
