@@ -386,12 +386,7 @@ app.get('/style.css', (req, res)=>res.sendFile(__dirname + '/style.css'))
   }
   /* End CSS for Dark Mode Slider
   –––––––––––––––––––––––––––––––––––––––––––––––––– */
-
   /* End Base Plate for CSS */
-
-  /*
-
-  */
 
   .appHeader {
     grid-area: header;
@@ -444,7 +439,7 @@ Feed
   .feed-post-container {
     border:solid 1px #ddd;
     border-radius:2px;
-    margin:10px;
+    margin:1vh 1vh 10vh 1vh;
   }
 
   .main-feed-img-container {
@@ -461,8 +456,8 @@ Feed
   }
 
   .cause-icons {
-    width: 50px;
-    height:50px;
+    width: 7vh;
+    height:7vh;
     transform: translate(15px,-65px);
     background:white;
     border-radius: 50%;
@@ -477,6 +472,12 @@ Feed
   .feed-add-comment-box {
     border:none;
     margin:5px;
+    width: 100%;
+    max-width: 80vh;
+  }
+
+  .post-button {
+    margin-top: 4.5vh;
   }
 
   .feed-likes-div {
@@ -601,7 +602,7 @@ Feed
     height: 100%;
     overflow: scroll;
     border: 0px solid #000;
-    margin: 50px auto;
+    margin: 20px auto;
   }
 
   #rbottom-container {
@@ -672,4 +673,21 @@ Feed
     border: 1px solid rgb(250,250,250);
     padding: 20px 50px 5px;
     background-color: rgb(250,250,250);
+  }
+
+  .form-inputs {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-inputs1 {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 0 1vh;
+  }
+
+  .input-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
