@@ -20,6 +20,23 @@ router.post('/',async (req,res) => {
     res.send(isLoaded)
 })
 
+// router.post('/post',async(req,res) => {
+//     console.log(req.body)
+//     let postInfo = await Post.selectIndividualPost(req.body.id)
+//     let comments = await Post.getPostComments(req.body.id)
+//     let likes = await Post.getPostLikes(req.body.id)
+//     console.log(postInfo)
+//     res.render('post',{locals:{
+//         img_url:postInfo.img_url,
+//         body:postInfo.body,
+//         comments:{
+//             body:comments.body,
+//             user:comments.username
+//         },
+//         numLikes:likes
+//     }})
+// })
+
 
 router.get('/updateUser', (req, res, next) =>{
     res.render('updateUser',{

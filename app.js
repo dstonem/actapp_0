@@ -25,6 +25,7 @@ app.use(session({
     saveUninitialized: false
 }))
 
+app.use(express.json())
 app.use(express.static("public"))
 app.use('/login',userRoutes)
 app.use('/feed',authenticate,feedRoutes)
