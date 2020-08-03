@@ -20,7 +20,6 @@ create table posts (
     picurl text not null,
     body VARCHAR not null,
     causes VARCHAR,
-    likes INTEGER,
     user_id integer references users (id),
     username VARCHAR references users (username)
 );
@@ -57,14 +56,14 @@ values
     ('npatton','123456','nathan','patton','npatton@gmail.com', '1234 Ashford Road', 'Atlanta', 'Georgia', '22236','blm','election','climate')
 ;
 
-insert into posts (picurl,body,causes,likes,user_id,username) 
+insert into posts (picurl,body,causes,user_id,username) 
 values
-    ('/images/1596310291366john-mark-smith-IS7WfX_f_ug-unsplash.jpg','body','blm',9,1,'dstonem'),
-    ('/images/1596310291366john-mark-smith-IS7WfX_f_ug-unsplash.jpg','body','climate',9,1,'dstonem'),
-    ('/images/1596310291366john-mark-smith-IS7WfX_f_ug-unsplash.jpg','body','election',9,1,'dstonem'),
-    ('/images/1596316748869k-mitch-hodge-LBFZfZp7sq4-unsplash.jpg','body','blm',9,2,'npatton'),
-    ('/images/1596316748869k-mitch-hodge-LBFZfZp7sq4-unsplash.jpg','body','climate',9,2,'npatton'),
-    ('/images/1596316748869k-mitch-hodge-LBFZfZp7sq4-unsplash.jpg','body','election',9,2,'npatton')
+    ('/images/1596310291366john-mark-smith-IS7WfX_f_ug-unsplash.jpg','body','blm',1,'dstonem'),
+    ('/images/1596310291366john-mark-smith-IS7WfX_f_ug-unsplash.jpg','body','climate',1,'dstonem'),
+    ('/images/1596310291366john-mark-smith-IS7WfX_f_ug-unsplash.jpg','body','election',1,'dstonem'),
+    ('/images/1596316748869k-mitch-hodge-LBFZfZp7sq4-unsplash.jpg','body','blm',2,'npatton'),
+    ('/images/1596316748869k-mitch-hodge-LBFZfZp7sq4-unsplash.jpg','body','climate',2,'npatton'),
+    ('/images/1596316748869k-mitch-hodge-LBFZfZp7sq4-unsplash.jpg','body','election',2,'npatton')
 ;
 
 insert into likes (user_id, post_id)

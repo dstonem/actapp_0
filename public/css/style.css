@@ -463,11 +463,20 @@ Feed
   .cause-icons {
     width: 50px;
     height:50px;
+    transform: translate(15px,-65px);
     background:white;
-    position:relative;
-    bottom:169px;
-    left:15px;
     border-radius: 50%;
+  }
+
+  .feed-add-comment-div {
+    width:100%;
+    height:25px;
+    display:flex;
+  }
+
+  .feed-add-comment-box {
+    border:none;
+    margin:5px;
   }
 
   .feed-likes-div {
@@ -479,6 +488,7 @@ Feed
 
   .like-icon {
     width: 15px;
+    cursor: pointer;
   }
 
   .user-who-posted {
