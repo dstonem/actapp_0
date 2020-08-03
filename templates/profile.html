@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="stylesheet" type="css/html" href="/public/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
     <style>
@@ -18,46 +18,56 @@
         }
         #profile-info {
             display: flex;
-            justify-content: space-around;
+            justify-content: space-evenly;
             width:100%;
+            max-height: 20vh;
+            height: 100%;
             margin:25px 0px;
             font-size: 3em;
+            margin-top: 60px;
+            padding: 20px;
         }
         #profile-feed {
-            width:67%;
-            height:800px;
+            width:60%;
+            height:100%;
             overflow: scroll;
+            align-self: center;
         }
         #profile-img {
             border-radius: 50%;
-            max-width:250px;
-            max-height:250px;
+            max-width:100px;
+            max-height:100px;
+            width: 100%;
+            height: 100%;
+        }
+        .column-feed {
+            display: flex;
+            flex-direction: column;
+        }
+        .profile {
+            display: flex;
+            flex-direction: row;
         }
     </style>
     <title>Profile</title>
 </head>
 <body>
     ${headerNav}
-    <!-- <section class="hero has-background-black">
-        <div class="hero-body">
-            <div class="container">
-                    <h1 class="h1 title is-1">ACT App</h1>
+    <div class="column-feed">
+        <div id="profile-info">
+            <!-- Need to change the src here to a profile pic pulled from the database -->
+            <div class="profile">
+                <img id="profile-img" src="./images/1596137483482Sabata101.png">
+                <h2>firstName</h2>
             </div>
+            <button id="showFeed">Show Feed</button>
         </div>
-    </section> -->
-    
-    <div id="profile-info">
-        <!-- Need to change the src here to a profile pic pulled from the database -->
-        <img id="profile-img" src="./images/1596137483482Sabata101.png">
-        <h2>firstName</h2>
-        <button id="showFeed">Show Feed</button>
+        <div id="profile-feed">
+            <!-- <img src="./images/1596136990391goveri_logotype2shadow.png">
+            <img src="./images/1596130545240patrick-hendry--AbeoL252z0-unsplash.jpg">
+            <img src="./images/1596137483482Sabata101.png"> -->
+        </div>
     </div>
-    <div id="profile-feed">
-        <!-- <img src="./images/1596136990391goveri_logotype2shadow.png">
-        <img src="./images/1596130545240patrick-hendry--AbeoL252z0-unsplash.jpg">
-        <img src="./images/1596137483482Sabata101.png"> -->
-    </div>
-    
     <script src="/js/img-to-profile.js" type="module"></script>
 </body>
 </html>

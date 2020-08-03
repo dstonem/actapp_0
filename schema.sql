@@ -9,7 +9,7 @@ create table users (
     city VARCHAR not null,
     state VARCHAR not null,
     zipcode VARCHAR not null,
-    profilePic VARCHAR,
+    profilePic VARCHAR UNIQUE,
     cause_one TEXT,
     cause_two TEXT,
     cause_three TEXT
@@ -49,6 +49,7 @@ create table tags_posts (
     post_id VARCHAR
 );
 
+
 insert into users (username,password,firstName,lastName,email,streetaddress,city,state,zipcode,cause_one,cause_two,cause_three)
 
 values 
@@ -81,8 +82,9 @@ VALUES
     ('Nice one!',4,1,'dstonem');
 
 -- start with the ONE and end with the MANY
+
 select users.id as uid, users.username, users.firstName, posts.id as pid, posts.picurl
     from users join posts
     on posts.user_id = users.id
-
--- keep all the queries on the backend so they're right next to the database (faster)
+    
+    -- keep all the queries on the backend so they're right next to the database (faster)
