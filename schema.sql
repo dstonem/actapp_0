@@ -31,11 +31,12 @@ create table likes (
 );
 
 create table comments (
-    id SERIAL PRIMARY KEY,
-    comment VARCHAR,
-    created_at TIMESTAMP,
-    user_id VARCHAR,
-    post_id VARCHAR
+    id serial primary key,
+    comment text not null,
+    created_at timestamp default now(),
+    post_id integer references posts (id),
+    user_id integer references users (id),
+    username text REFERENCES users (username)
 );
 
 create table tags (
@@ -73,6 +74,11 @@ values
     (2, 4),
     (2, 5),
     (2, 6);
+
+insert into comments (comment,post_id,user_id,username)
+VALUES
+    ('Nice job!',1,2,'npatton'),
+    ('Nice one!',4,1,'dstonem');
 
 -- start with the ONE and end with the MANY
 select users.id as uid, users.username, users.firstName, posts.id as pid, posts.picurl

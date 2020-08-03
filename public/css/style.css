@@ -389,6 +389,50 @@ app.get('/style.css', (req, res)=>res.sendFile(__dirname + '/style.css'))
 
   /* End Base Plate for CSS */
 
+  /*
+
+  */
+
+  .appHeader {
+    grid-area: header;
+    background-color: rgb(55, 182,53);
+    border-top-left-radius: 25px;
+    border-top-right-radius: 15px;
+    padding: 10px 20px 50px 50px;
+    box-shadow: 12px 12px 2px 1px rgba(51, 51, 51);
+    font-family: 'Krona One', sans-serif; 
+  }
+  .upload-container {
+    grid-area: main;
+    background-color: rgb(68, 213, 75);
+    padding: 20px;
+  }
+  .uploadselection {
+    grid-area: sidebar;
+    background-color: rgb(68, 213, 75);
+    box-shadow: 12px 12px 2px 1px rgba(51, 51, 51);
+    padding: 20px;
+  }
+  .footerNav {
+    grid-area: footer;
+    background-color:rgb(68, 213, 75);
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    box-shadow: 12px 12px 2px 1px rgba(51, 51, 51);
+  }
+  .uploadPage {
+    display: grid;
+    grid-template-columns: 300px 300px 300px 300px;
+    grid-template-rows: 120px auto 3rem;
+    grid-template-areas: 
+      ". header header ."
+      ". main sidebar ."
+      ". footer footer .";
+  }
+
+/*****************************************************************************
+Feed
+*****************************************************************************/
 
   #main-feed {
     width:100%;
@@ -416,14 +460,21 @@ app.get('/style.css', (req, res)=>res.sendFile(__dirname + '/style.css'))
     margin-top:-10%;
   }
 
-  .icons {
+  .cause-icons {
     width: 50px;
     height:50px;
     background:white;
     position:relative;
-    bottom:89px;
+    bottom:169px;
     left:15px;
     border-radius: 50%;
+  }
+
+  .feed-likes-div {
+    display:flex;
+    justify-content: flex-start;
+    height:15px;
+    margin:5px;
   }
 
   .like-icon {
@@ -432,4 +483,9 @@ app.get('/style.css', (req, res)=>res.sendFile(__dirname + '/style.css'))
 
   .user-who-posted {
     font-weight:bold;
+  }
+
+  .comments-and-likes-div {
+    display:flex;
+    justify-content: space-between;
   }
