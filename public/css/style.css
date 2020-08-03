@@ -597,12 +597,11 @@ Feed
 
 
   #r-container {
-    width: 400px;
+    width: 500px;
     height: 100%;
     overflow: scroll;
     border: 0px solid #000;
     margin: 50px auto;
-    padding: 90px 50px;
   }
 
   #rbottom-container {
@@ -630,6 +629,7 @@ Feed
     position: relative;
     left: 50px;
     font-size: medium;
+    font-family: Arial, Helvetica, sans-serif;
   }
 
   .errortext {
@@ -653,4 +653,23 @@ Feed
   .hr {
     display: inline;
     content: attr(data-content);
+  }
+
+  .cause {
+    /* word-wrap: break-word; */
+    height: 20px;
+    width: 175px;
+    /* margin: auto; */
+    /* left: 30px; */
+    font-size: small;
+    padding: 5px;
+  }
+
+  .causelink {
+    width: 250px;
+    height: 10%;
+    margin: 10px auto;
+    border: 1px solid rgb(250,250,250);
+    padding: 20px 50px 5px;
+    background-color: rgb(250,250,250);
   }
