@@ -19,7 +19,7 @@ const uploadToServer = (evt) =>{
         //not nessessay if you are just uploading a single image
         formData.append('body',document.getElementById('body').value )//etc
         formData.append('tags',document.getElementById('tags').value )//etc
-        console.log(`formData:${formData}`)
+        console.log(`formData:${JSON.stringify(formData)}`)
         fetch('/upload', {
             method:'POST',
             body:formData
