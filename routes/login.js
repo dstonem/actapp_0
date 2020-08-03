@@ -145,16 +145,4 @@ router.get('/deleteUser', (req, res, next) =>{
     res.render('deleteUser')
 })
 
-router.get('/feed', (req,res,next) =>{
-
-    let userId = req.session.users.id
-
-    db.any('SELECT title,body,picture FROM posts WHERE userId = $1', [userId])
-    .then((posts) =>{
-        res.render('feed', {posts: posts})
-    })
-
-    
-})
-
 module.exports = router
