@@ -25,7 +25,7 @@ router.post("/", (req,res)=>{
         form[name] = field;
         //form.profile image is undefined here: console.log(`form.profile_image:${form.profile_image}`)
         console.log(`form[name]:${name},${form[name]}`)
-      })
+    })
     .on('fileBegin', (name, file) => {
         //sets the path to save the image
         console.log(`is it even doing this fileBegin?: ${name}`)
