@@ -33,8 +33,20 @@ let Post = () => {
     }
 
     const likePost = async (user_id,post_id) => {
-        let likes = await db.none(`INSERT INTO likes (user_id,post_id) VALUES ($1,$2)`,[`${user_id}`,`${post_id}`])
+        //try to return the count of rows with post_id of __ then send it back to the feed.html through img-to-feed
+        await db.none(`INSERT INTO likes (user_id,post_id) VALUES ($1,$2)`,[`${user_id}`,`${post_id}`])
+        let likes = db.one(`SELECT count(*) FROM likes WHERE post_id = ${post_id}`)
         return likes
+    }
+
+    const getPostComments = async (post_id) => {
+        let likes = await db.any(`SELECT * FROM comments WHERE post_id = '${post_id}'`)
+        return likes
+    }
+
+    const addCommentToPost = async (comment, post_id, user_id, username) => {
+        let newComment = await db.one(`INSERT INTO comments (comment,post_id,user_id,username) VALUES($1,$2,$3,$4) RETURNING *`,[`${comment}`,`${post_id}`,`${user_id}`,`${username}`])
+        return newComment
     }
     
     // const searchPost = async () => {
@@ -58,7 +70,9 @@ let Post = () => {
         selectAllPostsFromCause,
         selectUsersCauses,
         getPostLikes,
-        likePost
+        likePost,
+        getPostComments,
+        addCommentToPost
         // searchPost
     }
     
