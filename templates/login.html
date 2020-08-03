@@ -1,52 +1,33 @@
 <!DOCTYPE html>
 <html lang="eng">
-<head>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-    <style>
-        .h1 {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color:white;
-        }
-    </style>
-    <title></title>
-</head>
-<style>
-    .h1 {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color:white;
-    }
-    .buttoncontain {
-        display: flex;
-        
-        justify-content: center;
-        align-items: center;
-    }
-</style>
-<body>
-    <section class="hero has-background-black is-full">
-        <div class="hero-body">
-            <div class="container">
-                    <h1 class="h1 title is-1">ACT App</h1>
+    <head>
+        <link rel="stylesheet" href="/css/style.css">
+        <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    
+        <title>Login</title>
+    </head>
+    
+    <body>
+        <div class="lr-container">
+            <div class="main-content">
+                <div class="header">
+                    <h1>ACT APP</h1>
+                </div>
+                <form action="/login" method="post">
+                    <fieldset>
+                    <legend class="logintext">Login/Register</legend>
+                    <p>${message}</p>
+                    <input name="username" type="text" placeholder="Enter Username" class="input-1" />
+                    <input name="password" type="password" placeholder="Enter Password" class="input-2"/>
+                    <button class="bttn">Submit</button>
+                    </fieldset>
+                </form>
+                </div>
+            <div class="lr-link">
+                <div class="s-part">
+                    New?<a href="/login/register"> Register Here!</a>
+                </div>
             </div>
         </div>
-    </section>
-    <section class="section has-background-light">
-    <form action="/login" method="post">
-        <fieldset>
-            <legend>Login/Register</legend>
-            <p>${message}</p>
-            <input name="username" placeholder="Enter Username"/>
-            <input name="password" placeholder="Enter Password"/>
-            <button>Submit</button>
-        </fieldset>
-    </form>
-    <a href="/login/register">New? Register Here!</a>
-</section>
-</body>
+    </body>
 </html>

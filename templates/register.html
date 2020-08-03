@@ -1,59 +1,37 @@
 <html>
-<head>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-    <style>
-        .h1 {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color:white;
-        }
-
-        .registerbutton {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    </style>
-</head>
-<body>
-    <section class="hero has-background-black">
-        <div class="hero-body">
-            <div class="container">
-                    <h1 class="h1 title is-1">ACT App</h1>
+    <head>
+        <link rel="stylesheet" href="/css/style.css">
+        <script src="https://kit.fontawesome.com/04a15f26c1.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div id="r-container">
+            <div class="register-content">
+            <div class="header">
+                <h1>ACT APP</h1>
             </div>
-        </div>
-    </section>
-    <section class="section has-background-light">
-        <div class="columns">
-            <div class="column"></div>
-                <div class="column">
-                    <div class="notification">
                     <form action="/login/register" method="post">
-                    <fieldset>
-                        <legend>Register</legend>
-                        <p>${message}</p>
-                        <input name="username" type="text" placeholder="Enter Username"/>
-                        <input name="password" type="password" placeholder="Enter Password"/>
-                        <input name="confirm-password" type="password" placeholder="Confirm Password"/>
-                        <input name="firstName" type="text" placeholder="Enter First Name"/>
-                        <input name="lastName" type="text" placeholder="Enter Last Name"/>
-                        <input name="email" type="email" placeholder="Enter Email"/>
-                        <input name="streetaddress" placeholder="Home Address (so we can send you election resources)"/>
-                        <input name="city" type="text" placeholder="Enter City" />
-                        <input name="state" type="text" placeholder="Enter State" />
-                        <input name="zipcode" type="text" placeholder="Enter Zipcode" />
-                        <button type="submit" type="text" value="submit" class="button is-success is-normal">Sign Up</button>
-                        </div>
-                    </fieldset>
-            </form>
-            <a href="/login">Already Have an Account? Login Here!</a>
-                </div>
+                        <fieldset>
+                            <legend class="registertext">Register</legend>
+                            <p class="errortext">${message}</p>
+                            <input name="username" type="text" placeholder="Enter Username" class="input-1"/>
+                            <input name="password" type="password" placeholder="Enter Password" class="input-1"/>
+                            <input name="confirm-password" type="password" placeholder="Confirm Password" class="input-1"/>
+                            <input name="firstName" type="text" placeholder="Enter First Name" class="input-1"/>
+                            <input name="lastName" type="text" placeholder="Enter Last Name" class="input-1"/>
+                            <input name="email" type="email" placeholder="Enter Email" class="input-1"/>
+                            <input name="streetaddress" type="text" placeholder="Home Address (so we can send you election resources)" class="input-2"/>
+                            <input name="city" type="text" placeholder="Enter City" class="input-2" />
+                            <input name="state" type="text" placeholder="Enter State" class="input-2"/>
+                            <input name="zipcode" type="text" placeholder="Enter Zipcode" class="input-2" />
+                            <button type="submit" type="text" value="submit" class="bttn">Sign Up</button>
+                        </fieldset>
+                    </form>
             </div>
-            <div class="column"></div>
+                <div class="lr-link" style="padding-bottom: 5px;">
+                    <div class="s-part">
+                        Already Have an Account?<a href="/login"> Login Here!</a>
+                    </div>
+                </div>
         </div>
-</section>
-</body>
+    </body>
 </html>
