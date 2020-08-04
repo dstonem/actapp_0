@@ -15,7 +15,8 @@ router.get('/',async (req,res) => {
             firstName:req.session.username
         },
         partials:{
-            headerNav: 'partials/headerNav'
+            headerNav: 'partials/headerNav',
+            firstName: 'partials/firstName'
         }
     })
 })
