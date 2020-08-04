@@ -9,6 +9,9 @@ router.get('/',async (req,res) => {
     // let isLoaded = await Post.selectAllFromUser(req.session.user_id)
     // res.send(isLoaded)
     res.render('profile',{
+        locals:{
+            firstName:req.session.username
+        },
         partials:{
             headerNav: 'partials/headerNav'
         }
