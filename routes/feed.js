@@ -8,10 +8,9 @@ router.use(bodyParser.urlencoded({ extended:true }))
 router.use(bodyParser.json())
 
 router.get('/',(req,res) => {
-    let firstName = req.session.firstName
     res.render('feed',{
         locals:{
-            firstName
+            firstName:req.session.username
         },
         partials:{
             headerNav: 'partials/headerNav'
