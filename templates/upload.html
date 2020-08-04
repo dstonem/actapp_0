@@ -23,17 +23,24 @@
 </head>
 <body>
     ${headerNav}
-    <div id="upload-image">
+    <div id="upload-image" class="uploadcontainer">
         <div id="image-to-Upload"></div>
             <fieldset>
-                <legend>Upload Image</legend>
-                <input type="file" accept="image/*" name="picurl" id="upload" />
+                <legend class="registertext">Upload Image</legend>
+                <input type="file" accept="image/*" name="picurl" id="upload" class="upload-box" />
             </fieldset>
             <fieldset>
-                <legend>Create Post</legend>
+                <legend class="registertext">Create Post</legend>
                                                             <!-- REPLACE THIS WITH ACTION ITEM EVENTUALLY <input name="title" placeholder="Title"/> -->
-                <input id="body" name="body" placeholder="Body"/>
-                <input id="tags" name="tags" placeholder="Tags"/>
+                <textarea id="body" name="body" placeholder="Body" class="input-1"/></textarea>
+                <label for="causes" class="registertext">Select A Tag</label>
+                <select id="dropdown" name="cause3" class="input-1">
+                    <option value="" disabled selected>Select your option</option>
+                    <option value="blm">Black Lives Matter</option>
+                    <option value="election">Upcoming Election</option>
+                    <option value="climate">Climate Change</option>
+                    <option value="youth">Youth Development Services</option>
+                </select>
                 <button id="submit" type="submit" class="hidden">Upload</button>
             </fieldset>
     </div>
