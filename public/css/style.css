@@ -717,7 +717,7 @@ Feed
 /* -- .avag-style is for text under avatar icon */
 .avag-style {
   position: relative;
-  /* bottom: -90px; */
+  bottom: -90px;
   opacity: 0.5;
   z-index: 1;
   color: black;
@@ -730,10 +730,11 @@ Feed
   margin-left: 3px;
 }
 .ava-img {
-  -moz-border-radius: 50px;
+  -moz-border-radius: 50%;
   border: 4px double rgba(87, 81, 81, 0.226);
-  border-radius: 50px;
+  border-radius: 50%;
   height: 100px;
+  width:100px;
 }
 .ava-control {
   display: none;

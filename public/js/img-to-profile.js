@@ -1,24 +1,39 @@
+let file = ""
+    // Avatar 
+async function avatarFile(){
+    if (this.files && this.files[0]){
+        let readFile = new FileReader();
+        readFile.onload = function (e){
+            document.getElementById("img-upload").src = e.target.result;
+            document.getElementById("img-upload").style.width = "100px";
+        };
+        readFile.readAsDataURL(this.files[0]);
+        file = this.files[0]
+    };
+    console.log('file:',file)
+    const formData = new FormData();
+    formData.append('picture', file.name);
+    console.log(file.name)
+
+    await fetch('/profile/update_profile_pic', {
+        method:'POST',
+        headers:{
+            'content-type':'application/json'
+        },
+        body:JSON.stringify({
+            profilePicUrl:this.files[0].name
+        })
+    })
+    .then(resp=>resp.json())
+    .then(data=>{
+        document.getElementById("img-upload").innerHTML = data
+        console.log(data)
+    })
+};
+
 let uploadProfilePic = () => {
-    // event.preventDefault()
-
-    // let profilePicForm = document.createElement('form')
-    // profilePicForm.className = 'profile-pic-upload-form'
-
-    // let profilePicUpload = document.createElement('input')
-    // profilePicUpload.setAttribute('type','file')
-    // profilePicUpload.innerText = 'Upload Picture'
-    // let profilePicUploadButton = document.createElement('button')
-
-    // profilePicUploadButton.addEventListener('click',uploadProfilePic)
-
-    // profilePicForm.append(profilePicUpload,profilePicUploadButton)
     
     let profilePicDiv = document.getElementById('profile-img')
-    // profilePicDiv.append(profilePicForm)
-
-    // let profilePic = document.getElementById('profile-img')
-    // //store in DB, then retrieve it in another function
-    // profilePic.setAttribute('src',profilePicUpload.value)
 
     var ahDiv = document.createElement("div"); // -- <div>
     ahDiv.className = "ava-group"; // -class/CSS
@@ -50,18 +65,7 @@ let uploadProfilePic = () => {
     ahInput.setAttribute("type","file");
     ahInput.className = "ava-control"; // -class/CSS
     ahbDiv.appendChild(ahInput); // - <div>bootstrap -> <input>"avatar"
-    //
-    // Avatar 
-    function avatarFile(){
-        if (this.files && this.files[0]){
-            let readFile = new FileReader();
-            readFile.onload = function (e){
-                document.getElementById("img-upload").src = e.target.result;
-                document.getElementById("img-upload").style.width = "80px";
-            };
-            readFile.readAsDataURL(this.files[0]);
-        };
-    };
+    
     document.getElementById("avatar").addEventListener("change",avatarFile,false);
 }
 

@@ -47,11 +47,16 @@ let User = () => {
         console.log(causes)
         return causes
     }
+
+    const updateProfilePic = async (profile_pic_url,username) => {
+        return await db.one(`UPDATE users SET profilePic = '${profile_pic_url}' WHERE username = '${username}' RETURNING *`)
+    }
         
         return {
             register,
             login,
-            storeUsersCauses
+            storeUsersCauses,
+            updateProfilePic
         }
     }
 
