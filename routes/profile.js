@@ -2,6 +2,8 @@ const express = require('express')
 const router = express.Router()
 const bodyParser = require('body-parser')
 const Post = require('../models/post-db-logic')()
+const User = require('../models/users-db-logic')()
+const formidable = require('formidable');
 
 router.use(bodyParser.urlencoded({ extended:true }))
 
@@ -9,6 +11,9 @@ router.get('/',async (req,res) => {
     // let isLoaded = await Post.selectAllFromUser(req.session.user_id)
     // res.send(isLoaded)
     res.render('profile',{
+        locals:{
+            firstName:req.session.username
+        },
         partials:{
             headerNav: 'partials/headerNav',
             firstName: 'partials/firstName'
@@ -19,6 +24,35 @@ router.get('/',async (req,res) => {
 router.post('/',async (req,res) => {
     let isLoaded = await Post.selectAllFromUser(req.session.user_id)
     res.send(isLoaded)
+})
+
+router.post('/update_profile_pic',async (req,res) => {
+    let form = {};
+
+    //this will take all of the fields (including images) and put the value in the form object above
+    new formidable.IncomingForm().parse(req)
+    .on('field', (name, field) => {
+        form[name] = field;
+        console.log(`form[name]:${name},${form[name]}`)
+      })
+    .on('fileBegin', (name, file) => {
+        //sets the path to save the image
+        console.log(`is it even doing this fileBegin?: ${name}`)
+        file.path = __dirname.replace('routes','') + 'public/images/' + new Date().getTime() + file.name
+    })
+    .on('file', (name, file) => {
+        //console.log('Uploaded file', name, file);
+        console.log("is it even doing this fileBegin?")
+        form.picture = file.path.replace(__dirname.replace('routes','')+'public',"");
+        console.log(`form.profile_image: ${form.picture}`)
+    })
+    .on('end', async ()=>{
+
+        let isLoaded = await User.updateProfilePic(form.picture,req.session.username)
+        res.send(isLoaded)
+        
+    })
+    
 })
 
 // router.post('/post',async(req,res) => {

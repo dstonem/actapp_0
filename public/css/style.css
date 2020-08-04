@@ -386,12 +386,7 @@ app.get('/style.css', (req, res)=>res.sendFile(__dirname + '/style.css'))
   }
   /* End CSS for Dark Mode Slider
   –––––––––––––––––––––––––––––––––––––––––––––––––– */
-
   /* End Base Plate for CSS */
-
-  /*
-
-  */
 
   .appHeader {
     grid-area: header;
@@ -437,14 +432,14 @@ Feed
   #main-feed {
     width:100%;
     margin:auto;
-    overflow:scroll;
+    
     margin-top: 60px;
   }
 
   .feed-post-container {
     border:solid 1px #ddd;
     border-radius:2px;
-    margin:10px;
+    margin:1vh 1vh 10vh 1vh;
   }
 
   .main-feed-img-container {
@@ -461,47 +456,74 @@ Feed
   }
 
   .cause-icons {
-    width: 50px;
-    height:50px;
-    transform: translate(15px,-65px);
+    width: 6vh;
+    height:6vh;
     background:white;
     border-radius: 50%;
   }
 
-  .feed-add-comment-div {
-    width:100%;
-    height:25px;
+  .feed-comment-form {
     display:flex;
+    width:100%;
+    padding:10px 10px 0px 0px;
+    transform: translateY(10px);
   }
 
   .feed-add-comment-box {
     border:none;
-    margin:5px;
+    border-radius:3px;
+    width: 100%;
+    height:2;
+    margin:0 10px;
+    resize:none;
+  }
+
+  .main-feed-comment-feed {
+    margin-left:10px;
+  }
+
+  .post-text {
+    margin-left:10px;
+  }
+
+  .post-button {
+    border:none;
   }
 
   .feed-likes-div {
     display:flex;
     justify-content: flex-start;
     height:15px;
-    margin:5px;
+    margin:10px;
   }
 
   .like-icon {
     width: 15px;
     cursor: pointer;
+    margin:2px;
   }
 
   .user-who-posted {
     font-weight:bold;
   }
 
-  .comments-and-likes-div {
+  .feed-likes-div {
     display:flex;
     justify-content: space-between;
+    align-items: center;
+    width:15px;
   }
 
+  .grey {
+    filter:opacity(0.5)
+  }
 
-
+  .feed-post-user-info-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:10px;
+  }
 
   #lr-container {
     width: 500px;
@@ -601,7 +623,7 @@ Feed
     height: 100%;
     overflow: scroll;
     border: 0px solid #000;
-    margin: 50px auto;
+    margin: 20px auto;
   }
 
   #rbottom-container {
@@ -682,3 +704,47 @@ Feed
     box-sizing: border-box;
     border-radius: 3px;
   }
+
+  .form-inputs {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-inputs1 {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 0 1vh;
+  }
+
+  .input-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  /* Avatar */
+/* -- .avag-style is for text under avatar icon */
+.avag-style {
+  position: relative;
+  bottom: -90px;
+  opacity: 0.5;
+  z-index: 1;
+  color: black;
+  background: white;
+  font-weight: bold;
+}
+.ava-label {
+  display: block;
+  margin-top: 5px;
+  margin-left: 3px;
+}
+.ava-img {
+  -moz-border-radius: 50%;
+  border: 4px double rgba(87, 81, 81, 0.226);
+  border-radius: 50%;
+  height: 100px;
+  width:100px;
+}
+.ava-control {
+  display: none;
+}

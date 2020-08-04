@@ -1,5 +1,5 @@
 const addLike = async (evt) => {
-    let postId = evt.target.parentNode.parentNode.parentNode.id
+    let postId = evt.target.parentNode.parentNode.id
     await fetch(`/feed/addlike/${postId}`, {
         method:'POST'
     })
@@ -11,9 +11,29 @@ const addLike = async (evt) => {
     })
 }
 
+const showComments = async (postId,value) => {
+    await fetch('/feed/getcomments', {
+        method:'POST',
+        headers:{
+            'content-type':'application/json'
+        },
+        body:JSON.stringify({
+            comment:value,
+            post_id:postId
+        })
+    })
+    .then(resp=>resp.json())
+    .then(data=>{
+        console.log(data)
+        let results = data.map(comment => `<div><b>${comment.username}</b> ${comment.comment}</div>`).join('')
+        let commentDiv = document.getElementById(`comment_feed_${postId}`)
+        commentDiv.innerHTML = results
+    })
+}
+
 const addComment = async (evt,value) => {
     event.preventDefault()
-    let postId = evt.target.parentNode.parentNode.parentNode.parentNode.id
+    let postId = evt.target.parentNode.parentNode.parentNode.id
     console.log(value)
     await fetch('/feed/addcomment', {
         method:'POST',
@@ -56,7 +76,12 @@ const pullPostData = async () => {
         sessionMainFeed.push(postsFromUsersCauses[i])
     }
 
+    sessionMainFeed.sort(function(a, b) {
+        return b.id - a.id;
+    })
+
     for(let i = 0; i < sessionMainFeed.length; i++){
+        
         let postContainer = document.createElement('div')
         postContainer.className = "feed-post-container"
         postContainer.setAttribute('id',`${sessionMainFeed[i].id}`)
@@ -87,7 +112,8 @@ const pullPostData = async () => {
         if(!sessionMainFeed[i].likes.find(like => like.user_id === me.id)){
             likeIcon.addEventListener('click', addLike)
         } else {
-            //make the icon grey
+            // likeIcon.innerHTML = '<img src="/images/icons/like_icon.jpg" style="opacity:0.5">'
+            likeIcon.className = 'grey'
         }
         
         let numLikes = document.createElement('p')
@@ -98,10 +124,12 @@ const pullPostData = async () => {
         
         let postText = document.createElement('p')
         postText.innerHTML = `<b>${sessionMainFeed[i].username}</b> ${sessionMainFeed[i].body}`
+        postText.className = 'post-text'
         //console.log(`post body:${sessionMainFeed[i].body}`)
 
         let commentFeed = document.createElement('div')
         commentFeed.setAttribute('id',`comment_feed_${sessionMainFeed[i].id}`)
+        commentFeed.className = 'main-feed-comment-feed'
 
         let commentDiv = document.createElement('div')
         commentDiv.className = 'feed-add-comment-div'
@@ -110,13 +138,16 @@ const pullPostData = async () => {
 
         // getCommentsAndLoadIntoCommentFeed()
         let commentForm = document.createElement('form')
+        commentForm.className = 'feed-comment-form'
 
-        let commentBox = document.createElement('textarea')
+        let commentBox = document.createElement('input')
         commentBox.setAttribute('name','newComment')
         commentBox.setAttribute('placeholder','Add comment')
         commentBox.className = 'feed-add-comment-box'
         let commentSubmit = document.createElement('button')
         commentSubmit.setAttribute('type','button')
+        commentSubmit.setAttribute('class','post-button')
+        commentSubmit.innerText = 'Post'
 
         commentForm.append(commentBox,commentSubmit)
         commentDiv.append(commentForm)
@@ -127,10 +158,6 @@ const pullPostData = async () => {
             }
         })
 
-        let commentsAndLikesDiv = document.createElement('div')
-        commentsAndLikesDiv.className = 'comments-and-likes-div'
-        commentsAndLikesDiv.append(likesDiv,commentDiv)
-
         let causeIcon = document.createElement('img')
         causeIcon.className = "cause-icons"
         sessionMainFeed[i].causes == 'blm' ? causeIcon.setAttribute('src','/images/icons/blm_icon.png') : null
@@ -140,9 +167,12 @@ const pullPostData = async () => {
 
         let userWhoPostedDiv = document.createElement('div')
         userWhoPostedDiv.className = 'feed-post-user-info-div'
+
+        showComments(sessionMainFeed[i].id)
         
         imgContainer.append(img)
-        postContainer.append(userWhoPosted,imgContainer,causeIcon,postText,commentFeed,commentsAndLikesDiv)
+        userWhoPostedDiv.append(userWhoPosted,causeIcon)
+        postContainer.append(userWhoPostedDiv,imgContainer,likesDiv,postText,commentFeed,commentDiv)
         document.getElementById('main-feed').appendChild(postContainer)
     }
 
