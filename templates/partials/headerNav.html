@@ -6,7 +6,7 @@
             position:fixed;
             top:0;
             display:flex;
-            justify-content: flex-end;
+            justify-content: space-between;
             width:100%;
             padding:5px;
             background-color: white;
@@ -21,18 +21,37 @@
             margin-top: 0px;
             margin-bottom: 2px;
             font-size: 50px;
-            padding-right: 350px;
             font-family: Arial, Helvetica, sans-serif;
             color: black;
             align-self: center;
         }
+      
+        .navbox {
+            max-width: 90vh;
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            padding-left: 5vh;
+        }
+
+        .navbuttons {
+            max-width: 40vh;
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+        }   
     </style>
 </head>
 <body>
     <nav class="headerNav" id="headerNav">
+    <div class="navbox"></div>
+    <div class="navbox">
       <h1>ACT APP</h1>
+    </div>
+    <div class="navbuttons">
         <a href="/feed"><img src="/images/icons/home_icon.png" alt="Feed" width="30" /></a>
         <a href="/upload"><img src="/images/icons/plus_icon2.png" alt="Upload" width="30" /></a>
         <a href='/profile'><img src="/images/icons/profile_icon3.png" alt="Profile" width="31" /></a>
+    </div>
     </nav>
 </body>
