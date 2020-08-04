@@ -12,17 +12,12 @@ async function avatarFile(){
     };
     console.log('file:',file)
     const formData = new FormData();
-    formData.append('picture', file.name);
+    formData.append('picture', file);
     console.log(file.name)
 
     await fetch('/profile/update_profile_pic', {
         method:'POST',
-        headers:{
-            'content-type':'application/json'
-        },
-        body:JSON.stringify({
-            profilePicUrl:this.files[0].name
-        })
+        body:formData
     })
     .then(resp=>resp.json())
     .then(data=>{
@@ -32,7 +27,6 @@ async function avatarFile(){
 };
 
 let uploadProfilePic = () => {
-    
     let profilePicDiv = document.getElementById('profile-img')
 
     var ahDiv = document.createElement("div"); // -- <div>
@@ -52,6 +46,7 @@ let uploadProfilePic = () => {
     var ahImg = document.createElement("img"); // -- <img>
     ahImg.setAttribute("id","img-upload");
     ahImg.className = "ava-img"; // -class/CSS
+    
     ahImg.setAttribute("src","/images/icons/default_ava.png");
     ahLab.appendChild(ahImg);
     //
@@ -71,26 +66,33 @@ let uploadProfilePic = () => {
 
 const pullPostDataFromServer = async () => {
     uploadProfilePic()
-    let allUsersPosts = await fetch('/profile', {
+    let data = await fetch('/profile', {
         method:'POST'
     })
-    allUsersPosts = await allUsersPosts.json()
-    allUsersPosts.sort(function(a, b) {
+    let {posts,user} = await data.json()
+    posts.sort(function(a, b) {
         return b.id - a.id;
     })
 
+    console.log(user)
+
+    let image = document.getElementById('img-upload')
+    if(user.profilepic){
+        image.setAttribute('src',user.profilepic)
+    }
+
     let profileFeed = []
 
-    for(let i = 0; i < allUsersPosts.length; i++){
-        console.log(allUsersPosts[i])
-        profileFeed.push(allUsersPosts[i].picurl)
+    for(let i = 0; i < posts.length; i++){
+        console.log(posts[i])
+        profileFeed.push(posts[i].picurl)
     }
 
     for(let i = 0; i < profileFeed.length; i++){
         let div = document.createElement('div')
         div.setAttribute('class','profile-feed-post-container')
         let postLink = document.createElement('a')
-        postLink.setAttribute('href',`${allUsersPosts[i].picurl}`)
+        postLink.setAttribute('href',`${posts[i].picurl}`)
         // let imgDiv = document.createElement('div')
         // imgDiv.className('profile-feed-img-container')
         let img = document.createElement('img')
@@ -98,9 +100,9 @@ const pullPostDataFromServer = async () => {
         img.setAttribute('class','profile-feed-img')
         let causeIcon = document.createElement('img')
         causeIcon.className = "cause-icons"
-        allUsersPosts[i].causes == 'blm' ? causeIcon.setAttribute('src','/images/icons/blm_icon.png') : null
-        allUsersPosts[i].causes == 'election' ? causeIcon.setAttribute('src','/images/icons/election_icon.png') : null
-        allUsersPosts[i].causes == 'climate' ? causeIcon.setAttribute('src','/images/icons/environment_icon.png') : null
+        posts[i].causes == 'blm' ? causeIcon.setAttribute('src','/images/icons/blm_icon.png') : null
+        posts[i].causes == 'election' ? causeIcon.setAttribute('src','/images/icons/election_icon.png') : null
+        posts[i].causes == 'climate' ? causeIcon.setAttribute('src','/images/icons/environment_icon.png') : null
         
         postLink.append(img,causeIcon)
         div.appendChild(postLink)

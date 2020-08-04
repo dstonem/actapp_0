@@ -21,8 +21,9 @@ router.get('/',async (req,res) => {
 })
 
 router.post('/',async (req,res) => {
-    let isLoaded = await Post.selectAllFromUser(req.session.user_id)
-    res.send(isLoaded)
+    let posts = await Post.selectAllFromUser(req.session.user_id);
+    let user = await User.getUser(req.session.username)
+    res.send({posts,user})
 })
 
 router.post('/update_profile_pic',async (req,res) => {

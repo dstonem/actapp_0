@@ -55,8 +55,36 @@ const addComment = async (evt,value) => {
     })
 }
 
-const pullPostData = async () => {
+const showProfilePic = async () => {
+    let data = await fetch('/profile', {
+        method:'POST'
+    })
+    let {user} = await data.json()
+    let profileImg = document.getElementById('profile-img')
+    if(user.profilepic){
+        profileImg.setAttribute('src',user.profilepic)
+    }
+    console.log(user)
+}
 
+const showAllInCategory = async (evt,filterby) => {
+    let category = evt.target.src
+    
+    if(category === 'http://localhost:4321/images/icons/blm_icon.png'){
+        filterby = 'blm'
+    }
+    if(category === 'http://localhost:4321/images/icons/environment_icon.png'){
+        filterby = 'climate'
+    }
+    if(category === 'http://localhost:4321/images/icons/election_icon.png'){
+        filterby = 'election'
+    }
+    console.log(filterby)
+
+}
+
+const pullPostData = async () => {
+    showProfilePic()
     //console.log('working')
 
     let postsFromUsersCauses = await fetch('/feed', {
@@ -165,6 +193,8 @@ const pullPostData = async () => {
         sessionMainFeed[i].causes == 'climate' ? causeIcon.setAttribute('src','/images/icons/environment_icon.png') : null
         //console.log(`post cause:${sessionMainFeed[i].causes}`)
 
+        causeIcon.addEventListener('click',showAllInCategory)
+
         let userWhoPostedDiv = document.createElement('div')
         userWhoPostedDiv.className = 'feed-post-user-info-div'
 
@@ -181,36 +211,3 @@ const pullPostData = async () => {
 }
 
 window.addEventListener('DOMContentLoaded',pullPostData)
-
-/*
-const getCommentsAndLoadIntoCommentFeed = async (evt) => {
-    let postId = evt.target.parentNode.parentNode.parentNode.id
-    console.log(postId)
-    let commentsOnPost = await fetch('/feed/getcomments', {
-        method:'POST'
-    })
-
-    //XXXXXX this is coming out undefined
-    commentsOnPost = commentsOnPost.json()
-    //console.log(`The JSON of commentsOnPost is: ${JSON.stringify(commentsOnPost)}`)
-
-    // for(let i = 0; i < commentsOnPost.length; i++){
-        let existingCommentDiv = document.createElement('div')
-    
-        let commentUser = document.createElement('p')
-        commentUser.innerText = commentsOnPost.username
-        commentUser.className = 'bold'
-
-        let commentComment = document.createElement('p')
-        commentComment.innerText = commentsOnPost.comment
-
-        existingCommentDiv.append(commentUser,commentComment)
-        commentFeed.append(existingCommentDiv)
-
-        //push/append into the comment feed
-        //console.log(`data.username: ${commentsOnPost.username}`)
-    // }
-    //XXXXXX HOW DO WE MAKE IT LOAD THE NEW COMMENTS POSTED WITHOUT RELOADING?
-    // window.location = `/feed/#${sessionMainFeed[i].id}`
-}
-*/

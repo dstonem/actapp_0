@@ -484,6 +484,7 @@ Feed
 
   .post-text {
     margin-left:10px;
+    max-width:485px;
   }
 
   .post-button {
@@ -738,4 +739,15 @@ Feed
 }
 .ava-control {
   display: none;
+}
+
+.action-list {
+  position: absolute;
+  left:50px;
+  top:250px;
+  height:400px;
+}
+
+.action-list ul li {
+  margin:25px;
 }

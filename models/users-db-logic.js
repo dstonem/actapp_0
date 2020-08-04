@@ -52,11 +52,16 @@ let User = () => {
         return await db.one(`UPDATE users SET profilePic = '${profile_pic_url}' WHERE username = '${username}' RETURNING *`)
     }
         
+    const getUser = async (username) => {
+        return await db.one(`SELECT * FROM users WHERE username = '${username}'`)
+    }
+
         return {
             register,
             login,
             storeUsersCauses,
-            updateProfilePic
+            updateProfilePic,
+            getUser
         }
     }
 
