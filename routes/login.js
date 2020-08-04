@@ -67,6 +67,7 @@ router.post('/register', async (req,res,next) => {
         req.session.city = city
         req.session.state = state
         req.session.zipcode = zipcode
+        req.session.profilepic = profilePic
         req.session.cause1 = cause1
         req.session.cause2 = cause2
         req.session.cause3 = cause3
