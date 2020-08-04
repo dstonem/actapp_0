@@ -9,7 +9,6 @@ const loadFile = (evt)=>{
     FR.readAsDataURL(evt.target.files[0]);
     file = evt.target.files[0];
     document.getElementById("submit").classList.remove("hidden")
-    console.log(file.size)
 }
 
 const uploadToServer = (evt) =>{
@@ -20,7 +19,7 @@ const uploadToServer = (evt) =>{
         //not nessessay if you are just uploading a single image
         formData.append('body',document.getElementById('body').value )//etc
         formData.append('tags',document.getElementById('tags').value )//etc
-        console.log(`formData:${JSON.stringify(formData)}`)
+        console.log(`formData:`,formData)
         fetch('/upload', {
             method:'POST',
             body:formData

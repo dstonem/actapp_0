@@ -9,7 +9,7 @@ create table users (
     city VARCHAR not null,
     state VARCHAR not null,
     zipcode VARCHAR not null,
-    profilePic VARCHAR UNIQUE,
+    profilePic VARCHAR,
     cause_one TEXT,
     cause_two TEXT,
     cause_three TEXT
