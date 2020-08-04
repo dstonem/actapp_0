@@ -14,7 +14,7 @@ Deployment for the site is currently being done through AWS.
 ##### Build Status
 
 
-  Future features for the app imclude:
+  Future features for the app include:
 
   *A point system to for users who are active in their causes.
   *A Domain name and place to host the site.
