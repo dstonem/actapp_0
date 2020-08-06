@@ -4,7 +4,7 @@
 The Act APP is a Social Media Experience meant to engage individuals in political movements all around them. Individuals can post images that are true the causes and show their support.
 
 ### Motivation
-The movtivation behind this app to spread awareness to social causes and to create a platform for the political climates that are occuring all around us. 
+The motivation behind this app to spread awareness to social causes and to create a platform for the political climates that are occuring all around us. 
 
 
 #### Deployment
