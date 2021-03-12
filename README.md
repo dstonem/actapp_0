@@ -1,4 +1,5 @@
-# ACT APP
+# ACT APP (prototype)
+This express web app was built in one week as part of the DigitalCrafts Immersive Full Stack Web Development bootcamp.
 
 ## What is it?
 The Act APP is a Social Media Experience meant to engage individuals in political movements all around them. Individuals can post images that are true the causes and show their support.
@@ -19,3 +20,4 @@ Deployment for the site is currently being done through AWS.
   *A point system to for users who are active in their causes.
   *A Domain name and place to host the site.
   *The addition of more causes that users can get behind.
+
